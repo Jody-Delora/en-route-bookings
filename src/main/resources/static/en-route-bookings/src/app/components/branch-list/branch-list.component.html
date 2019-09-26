@@ -1,0 +1,23 @@
+<br>
+<h4>Branch List</h4>
+<br>
+<table class="table table-striped">
+    <thead class="thead-dark">
+      <th></th>
+      <th>Branch Address 1</th>
+      <th>Branch Suburb</th>
+      <th>Branch City</th>
+      <th>Branch Province</th>
+      <th>Branch Tel</th>
+      <th>Branch Fax</th>
+      </thead>
+    <tr *ngFor="let branch of this.branchInfo;let i=index">
+      <td>{{i+1}}</td>
+      <td>{{branch.branchAddress1}}</td>
+      <td>{{branch.branchSuburb}}</td>
+      <td>{{branch.branchCity}}</td>
+      <td>{{branch.branchProvince}}</td>
+      <td>{{branch.branchTel}}</td>
+      <td>{{branch.branchFax}}</td>
+    </tr>
+  </table>

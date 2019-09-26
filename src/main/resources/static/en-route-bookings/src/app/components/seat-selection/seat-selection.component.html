@@ -1,0 +1,258 @@
+<!--div class="stepwizard col-md-offset-0">
+    <div class="stepwizard-row setup-panel">
+      <div class="stepwizard-step">
+        <a  type="button" class="btn btn-primary btn-circle" disabled="disabled">1</a>
+        <p>Flight Selection</p>
+      </div>
+      <div class="stepwizard-step">
+        <a  type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+        <p>Review</p>
+      </div>
+      <div class="stepwizard-step">
+        <a  type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+        <p>Traveller Details</p>
+      </div>
+      <div class="stepwizard-step">
+          <a  type="button" class="btn btn-default btn-circle" >4</a>
+          <p>Seat Selection </p>
+        </div>
+        <div class="stepwizard-step">
+            <a  class="btn btn-default btn-circle" disabled="disabled">5</a>
+            <p>Flight Extras</p>
+          </div>
+          <div class="stepwizard-step">
+              <a  type="button" class="btn btn-default btn-circle" disabled="disabled">6</a>
+              <p>Payment</p>
+            </div>
+            <div class="stepwizard-step">
+                <a  type="button" class="btn btn-default btn-circle" disabled="disabled">7</a>
+                <p>Done</p>
+              </div>
+    </div>
+  </div-->
+  <div class="container">
+    <br>
+  <button class="btn btn-primary" (click)="back()">Back</button>
+  <button style="float:right" class="btn btn-success"  data-toggle="modal" data-target="#cart" ><span class="fa fa-shopping-cart"></span> R {{flightInfo.farePrice*traveller}}</button>
+  <br>
+  <app-seat-confirmation [seatInfo]="this.seatSelection"></app-seat-confirmation>
+  <!-- Modal -->
+  <!--div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cart Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <table class="table table-bordered">
+                  <thead class="thead-dark">
+                    <tr>
+                    <th>Fare Price</th>
+                    <th>Traveller Quantity</th>
+                    <th>VAT</th>
+                    <th>Passenger Safety Charge</th>
+                    <th>Passenger Security Charge</th>
+                    <th>Passenger Service Charge</th>
+                    <th>Total Taxes</th>
+                    <th>Total Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>R {{flightInfo.farePrice}}</td>
+                    <td>{{traveller}}</td>
+                    <td>R {{flightInfo.VAT}}</td>
+                    <td>R {{flightInfo.passengerSafetyCharge}}</td>
+                    <td>R {{flightInfo.passengerSecurityCharge}}</td>
+                    <td>R {{flightInfo.passengerServiceCharge}}</td>
+                    <td>R {{flightInfo.VAT+flightInfo.passengerSafetyCharge+flightInfo.passengerSecurityCharge+flightInfo.passengerServiceCharge}}</td>
+                    <td><b>R {{flightInfo.farePrice*traveller}}</b></td>
+                  </tr>
+                </tbody>
+                </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+      </div-->
+  
+  <form class="seat_legend" >
+    <h4>Seat Legend</h4>
+      <ol id="seatLegend">
+          <li id="standard">
+          </li>
+          <label for="standard">Standard(Back/Front)</label>
+  
+          <li id="stretch">
+          </li>
+          <label for="stretch">Stretch Zone (Extra Legroom)</label>
+   
+          <li id="exit">
+          </li>
+          <label for="exit">Exit Row (Extra Legroom)</label>
+  
+          <li id="front">
+          </li>
+          <label for="front">Front Row (Extra Legroom)</label>
+  
+        </ol>
+    </form>
+    
+  
+  <div class="plane" *ngFor="let aircraft of data">
+      <h4 style="float:center" >Please select a seat</h4><br>
+      <h4 style="float:center" >{{aircraft.aircraftName}}</h4><br>
+      
+      <!--div class="cockpit">
+        <h1>Please select a seat</h1>
+        
+      </div-->
+      <div class="exit exit--front fuselage">
+        
+      </div>
+      <ol class="cabin fuselage"  *ngFor="let flight of aircraft.flightSchedule">
+        <li class="row row--1">
+          <ol class="seats" *ngFor="let seat of flight.airlineClass.seatPlan|slice:0:6" [ngSwitch]="seat.seatType">
+            <li class="seat" >
+               
+              <input  type="checkbox"  [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)"/>
+              <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--2">
+          <ol class="seats" *ngFor="let seat of flight.airlineClass.seatPlan|slice:6:12" [ngSwitch]="seat.seatType">
+            <li class="seat" > 
+              <input  type="checkbox" [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)" />
+              <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>    
+            </li>
+          </ol>
+        </li>
+        <li class="row row--3">
+          <ol class="seats" *ngFor="let seat of flight.airlineClass.seatPlan|slice:12:18" [ngSwitch]="seat.seatType">
+            <li class="seat" >
+              <input  type="checkbox" [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)" />
+              <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--4">
+          <ol class="seats" *ngFor="let seat of flight.airlineClass.seatPlan|slice:18:24" [ngSwitch]="seat.seatType">
+            <li class="seat" >
+              <input  type="checkbox"  [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)" />
+              <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen"  for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Standard (Back)'"  style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--5">
+          <ol class="seats" *ngFor="let seat of flight.airlineClass.seatPlan|slice:24:30" [ngSwitch]="seat.seatType">
+            <li class="seat" >
+              <input  type="checkbox"  [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)"/>
+              <label   *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen"  for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label   *ngSwitchCase="'Standard (Back)'"  style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}" >{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label   *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label   *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label   *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--6">
+          <ol class="seats" *ngFor="let seat of flight.airlineClass.seatPlan|slice:30:36" [ngSwitch]="seat.seatType">
+            <li class="seat" >
+              <input  type="checkbox"  [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)" />
+              <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+             
+            </li>
+          </ol>
+        </li>
+        <li class="row row--7">
+          <ol class="seats" *ngFor="let seat of flight.airlineClass.seatPlan|slice:36:42" [ngSwitch]="seat.seatType">
+            <li class="seat" >
+              <input  type="checkbox"  [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)" />
+              <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+             
+            </li>
+          </ol>
+        </li>
+        <li class="row row--8">
+          <ol class="seats" *ngFor="let seat of flight.airlineClass.seatPlan|slice:42:48" [ngSwitch]="seat.seatType">
+            <li class="seat" >
+              <input  type="checkbox"  [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)" />
+              <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+             
+            </li>
+          </ol>
+        </li>
+        <li class="row row--9">
+          <ol class="seats" *ngFor="let seat of flight.airlineClass.seatPlan|slice:48:54" [ngSwitch]="seat.seatType">
+            <li class="seat" >
+              <input  type="checkbox"  [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)" />
+              <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+             
+            </li>
+          </ol>
+        </li>
+        <li class="row row--10">
+          <ol class="seats" *ngFor="let seat of flight.airlineClass.seatPlan|slice:54:60" [ngSwitch]="seat.seatType">
+            <li class="seat" >
+              <input  type="checkbox"  [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)" />
+              <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>        
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <div class="exit exit--back fuselage"> 
+             
+      </div>  
+     
+    </div>
+  
+      <!--div class="seat_details" *ngFor="let seat of seatSelection|slice:0:travellerList.length">
+        <h4>Seat row:</h4><h5>{{seat.seat_row}}</h5>
+        <h4>Seat column:</h4><h5>{{seat.seat_column}}</h5>
+        <h4>Seat type:</h4><h5>{{seat.seat_type}}</h5>
+        <h4>Seat price:</h4><h5>{{seat.seat_price}}</h5>
+       </div-->
+   
+   </div>

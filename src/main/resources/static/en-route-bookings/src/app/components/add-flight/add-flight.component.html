@@ -1,0 +1,281 @@
+<div class="row">
+  <div class="col-md-12">
+    <br>
+    <button class="btn btn-primary" (click)="back()">Back</button>
+    <br>
+  </div>
+</div>
+<form class="col-md-12" (submit)="addAircraft(aircraftName,carrierName)">
+  <h4>Add Aircraft</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Aircraft Name:</label>
+      <input type="text" name="aircraftName" class="form-control" [(ngModel)]="aircraftName"/>
+    </div>
+    <div class="col-md-4">
+      <label>Carrier Name:</label>
+      <select name="carrierName" class="form-control" [(ngModel)]="carrierName">
+        <option>Kulula.com</option>
+        <option>British Airways</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Carrier Logo:</label>
+      <input type="file" name="carrierLogo" class="form-control" (change)="getCarrierLogo($event)" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      
+      <input  class="btn btn-primary" [disabled]="flightList.length==0" type="submit" value="Add Aircraft"/>
+    </div>
+  </div> 
+</form>
+
+<form class="col-md-12" (submit)="addFlight(arrivalLocation,arrivalDate,arrivalTime,departureLocation,departureDate,departureTime,flightNo)">
+  <h4>Add Flight</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Arrival Location:</label>
+      <select name="arrivalLocation" class="form-control" [(ngModel)]="arrivalLocation">
+        <option>O.R Tambo (Jo'burg)</option>
+        <option>Lanseria (Jo'burg)</option>
+        <option>King Shaka (Durban)</option>
+        <option>Cape Town</option>
+        <option>George</option>
+        <option>Port Elizabeth</option>
+        <option>East London</option>
+        <option>Windhoek</option>
+        <option>Harare</option>
+        <option>Maurituis</option>
+        <option>Victoria Falls</option>
+        <option>Livingstone</option>
+        <option>Nairobi</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Arrival Date:</label>
+      <input type="date" min="{{today}}" name="arrivalDate" class="form-control" [(ngModel)]="arrivalDate"/>
+    </div>
+    <div class="col-md-4">
+      <label>Arrival Time:</label>
+      <input type="time" name="arrivalTime"  class="form-control"[(ngModel)]="arrivalTime" />
+    </div>
+  </div> 
+  <div class="row"> 
+    <div class="col-md-4">
+      <label>Departure Location:</label>
+      <select name="departureLocation" class="form-control" [(ngModel)]="departureLocation">
+        <option>O.R Tambo (Jo'burg)</option>
+        <option>Lanseria (Jo'burg)</option>
+        <option>King Shaka (Durban)</option>
+        <option>Cape Town</option>
+        <option>George</option>
+        <option>Port Elizabeth</option>
+        <option>East London</option>
+        <option>Windhoek</option>
+        <option>Harare</option>
+        <option>Maurituis</option>
+        <option>Victoria Falls</option>
+        <option>Livingstone</option>
+        <option>Nairobi</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Departure Date:</label>
+      <input type="date" min="{{today}}" name="departureDate" class="form-control" [(ngModel)]="departureDate"/>
+    </div>
+    <div class="col-md-4">
+      <label>Departure Time:</label>
+      <input type="time" name="departureTime" class="form-control" [(ngModel)]="departureTime"/>
+    </div>
+  </div>  
+  <div class="row">
+    <div class="col-md-4">
+      <label>Flight No:</label>
+      <input type="text" name="flightNo" class="form-control" [(ngModel)]="flightNo"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <br>
+      <input class="btn btn-primary" type="submit" value="Add flight"/>
+    </div>
+  </div>
+</form>
+
+<form class="col-md-12" (submit)="addAirlineClass(airlineClassName)">
+  <h4>Add Airline Class</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Airline Class:</label>
+      <select name="airlineClass" class="form-control" [(ngModel)]="airlineClassName">
+        <option>Economy</option>
+        <option>Business</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <br>
+      <input class="btn btn-primary" [disabled]="seatList.length<6" type="submit" value="Add Airline Class"/>
+    </div>
+  </div>
+</form>
+<form class="col-md-12" (submit)="addFare(fareType,farePrice,maxSeats,checkedBaggage,flightCancellation,flightChanges,foodAndBeverages,VAT,passengerSafetyCharge,passengerSecurityCharge,passengerServiceCharge)">
+  <h4>Add Fare</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Fare Type:</label>
+      <select name="fareType" class="form-control" [(ngModel)]="fareType">
+        <option>Standard</option>
+        <option>Semi-Flex</option>
+        <option>Fully Flex</option>
+        <option>Business</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Fare Price:</label>
+      <input type="text" name="farePrice" class="form-control" [(ngModel)]="farePrice"/>
+    </div>
+    <div class="col-md-4">
+      <label>Max Seats:</label>
+      <input type="number" name="maxSeats" class="form-control" [(ngModel)]="maxSeats"/>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-md-4">
+      <label>Checked Baggage:</label>
+      <input type="text" name="checkedBaggage" class="form-control" [(ngModel)]="checkedBaggage"/>
+    </div>
+
+    <div class="col-md-4">
+      <label>Flight Cancellation:</label>
+      <input type="text" name="flightCancellation" class="form-control" [(ngModel)]="flightCancellation"/>
+    </div>
+
+    <div class="col-md-4">
+      <label>Flight Changes:</label>
+      <input type="text" name="flightChanges" class="form-control" [(ngModel)]="flightChanges"/>
+    </div>
+  </div>
+  <div class="row">
+    
+    <div class="col-md-4">
+      <label>Food and beverages:</label>
+      <input type="text" name="foodAndbeverages" class="form-control" [(ngModel)]="foodAndBeverages"/>
+    </div>
+    <div class="col-md-4">
+        <label>Value Add Tax:</label>
+        <input type="text" name="VAT" class="form-control" [(ngModel)]="VAT"/>
+    </div>
+      <div class="col-md-4">
+        <label>Passenger Safety Charge:</label>
+        <input type="text" name="passengerSafetyCharge" class="form-control" [(ngModel)]="passengerSafetyCharge"/>
+      </div>  
+    </div>
+    
+    <div class="row">
+      
+      <div class="col-md-4">
+        <label>Passenger Security Charge:</label>
+        <input type="text" name="passengerSecurityCharge" class="form-control" [(ngModel)]="passengerSecurityCharge"/>
+      </div>
+      <div class="col-md-4">
+        <label>Passenger Service Charge:</label>
+        <input type="text" name="passengerServiceCharge" class="form-control" [(ngModel)]="passengerServiceCharge"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <br>
+        <input type="submit" class="btn btn-primary" value="Add Fare"/>
+      </div>
+    </div>
+</form>
+<form class="col-md-12" (submit)="addSeat(seatColumn,seatRow,seatType,seatPosition,seatPrice)">
+  <h4>Add Seat</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Seat Column:</label>
+      <select name="seatColumn" class="form-control" [(ngModel)]="seatColumn">
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+        <option>E</option>
+        <option>F</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Seat Row:</label>
+      <input type="number" name="seatRow" class="form-control" min=0 max=10 [(ngModel)]="seatRow"/>
+    </div>
+    <div class="col-md-4">
+      <label>Seat Postion:</label>
+      <select name="seatPosition" class="form-control" [(ngModel)]="seatPosition">
+        <option>Window Seat</option>
+        <option>Center Seat</option>
+        <option>Aisle Seat</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Seat Type:</label>
+      <select name="seatType" class="form-control" [(ngModel)]="seatType">
+        <option>Front Row (Extra Legroom)</option>
+        <option>Standard (Front)</option>
+        <option>Stretch Zone (Extra Legroom)</option>
+        <option>Standard (Back)</option>
+        <option>Exit Row (Extra Legroom)</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Seat Price:</label>
+      <input type="text" name="seatPrice" class="form-control" [(ngModel)]="seatPrice"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <br>
+      <input type="submit" class="btn btn-primary" value="Add Seat"/>
+    </div>
+  </div>
+</form>
+
+<form class="col-md-12" (submit)="addExtra(extraType,extraDescription,extraPrice,extraImage)">  
+<h4>Add Extra</h4>
+<div class="row">
+  <div class="col-md-4">
+    <label>Extra Type:</label>
+    <input type="text" name="extraType" class="form-control" [(ngModel)]="extraType"/>
+     
+  </div>
+  <div class="col-md-4">
+    <label>Extra Description:</label>
+    <textarea name="extraDescription" class="form-control" [(ngModel)]="extraDescription"></textarea>
+  </div>
+  <div class="col-md-4">
+    <label>Extra Price:</label>
+    <input type="text" name="extraPrice" class="form-control" [(ngModel)]="extraPrice"/>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <label>Extra Image:</label>
+    <input type="file" name="extraImage" class="form-control" (change)="getExtraLogo($event)"/>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <br>
+    <input type="submit" class="btn btn-primary" value="Add Extra"/>
+  </div>
+</div>
+</form>
+
+<app-flight-list [flightInfo]="this.flightList"></app-flight-list>
+<app-fare-list [fareInfo]="this.fareList"></app-fare-list>
+<app-seat-list [seatInfo]="this.seatList"></app-seat-list>
+<app-flight-extra-list [flightExtraInfo]="this.extraList"></app-flight-extra-list>

@@ -1,0 +1,137 @@
+<div class="container">
+  <h2>Review booking information</h2>
+  <!--div id="searchLegend" *ngFor="let car of carHireInfo">
+      <h2>Your Search</h2>
+      <h3>Car Summary</h3>
+      <br>
+      <h4>pick-up: {{car.pickUpInfo.pickUpAddress1}},{{car.pickUpInfo.pickUpSuburb}} {{car.pickUpInfo.pickUpCity}},{{car.pickUpInfo.pickUpProvince}}</h4>
+      <h4>date: {{carHireInfo.pickUpDate}} {{carHireInfo.pickUpTime}}</h4>
+      <h4>Tel: {{car.pickUpInfo.pickUpTel}}</h4>
+      <br>
+      <h4>drop-off: {{car.dropOffInfo.dropOffAddress1}},{{car.dropOffInfo.dropOffAddress2}} {{car.dropOffInfo.dropOffCity}},{{car.dropOffInfo.dropOffProvince}}</h4>
+      <h4>date : {{carHireInfo.dropOffDate}} {{carHireInfo.dropOffTime}}</h4>
+      <h4>Tel: {{car.dropOffInfo.dropOffTel}}</h4>
+      <br>
+      <button class="btn btn-primary btn-lg" (click)="back()">Change</button>
+      <br>
+      </div-->
+      <br>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+          <th>Pick-Up Location</th>
+          <th>Pick-Up Date</th>
+          <th>Pick-Up Time</th>
+          <th>Pick-Up Contact</th>
+          <th>Drop-Off Location</th>
+          <th>Drop-Off Date</th>
+          <th>Drop-Off Time</th>
+          <th>Drop-Off Contact</th>
+
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{carInfo.pickUpInfo.pickUpSuburb}}</td>
+          <td>{{carInfo.pickUpInfo.pickUpDate}}</td>
+          <td>{{carInfo.pickUpInfo.pickUpTime}}</td>
+          <td>
+            Tel: {{carInfo.pickUpInfo.pickUpTel}}<br>
+            Fax: {{carInfo.pickUpInfo.pickUpFax}}
+          </td>
+          <td>{{carInfo.dropOffInfo.dropOffSuburb}}</td>
+          <td>{{carInfo.dropOffInfo.dropOffDate}}</td>
+          <td>{{carInfo.dropOffInfo.dropOffTime}}</td>
+          <td>
+            Tel: {{carInfo.dropOffInfo.dropOffTel}}<br>
+            Fax: {{carInfo.dropOffInfo.dropOffFax}}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+      <br>
+  <table class="table table-striped">
+      <thead class="thead-dark">
+        <th>Vehicle Make and Model</th>
+        <th>Vehicle Details</th>
+        <th>Waiver Details</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{carInfo.vehicleMakeAndModel}}<br><img src="{{carInfo.carImage}}"></td>
+            <td>
+              <div class="row">
+                <div class="col-md-6">
+                    Vehicle category: <h5>{{carInfo.vehicleCategory}}</h5><br>
+                    Vehicle class size: <h5>{{carInfo.vehicleClassSize}}</h5><br>
+                    Transmission: <h5>{{carInfo.transmission}}</h5><br>
+                </div>
+                <div class="col-md-6">
+                    Air conditioning: <h5>{{carInfo.airConditioning}}</h5><br>
+                    Door count: <h5>{{carInfo.doorCount}}</h5><br>
+                    Passenger capacity: <h5>{{carInfo.passengerCapacity}}</h5><br>
+                </div>  
+              </div>
+            </td>
+            <td>
+                <!--div class="col-md-6"-->
+                  <h5>{{carInfo.waiverType}}</h5>
+                  Price: <h5>{{carInfo.waiverPrice}} ZAR</h5><br>
+                  <img id="waiver" src="{{carInfo.supplierLogo}}"><br>
+                  Deposit fee: <h5>{{carInfo.waiverDepositFee}} ZAR</h5><br>
+                  Excess fee<h5>{{carInfo.waiverExcessFee}} ZAR</h5><br>
+                <!--/div-->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+          <h4>Request special equipment (optional)</h4>
+          These requests will be sent to the supplier, and are subject to availability. Additional fees may apply, and payment will be taken at the supplier depot.
+          <table class="table table-striped"> 
+            <thead class="thead-dark">
+              <th>Extra Type</th>
+              <th>Extra Price</th>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let extra of carInfo.carExtra">
+                <td>{{extra.carExtraType}}</td>
+                <td>R {{extra.carExtraPrice}}</td>
+                <td><input type="checkbox" (change)="addExtra($event,extra.carExtraType,extra.carExtraPrice)"/></td>
+              </tr>
+            </tbody>
+            </table>
+            <br>
+            <table class="table">
+              <thead class="thead-dark">
+                <th>waiver Deposit Fee</th>
+                <th>waiver Excess Fee</th>
+                <th>waiver Admin Fee</th>
+                <th>waiver Total Price</th>
+                </thead>
+                <tr>
+                  <td>R {{carInfo.waiverDepositFee}}</td>
+                  <td>R {{carInfo.waiverExcessFee}}</td>
+                  <td>R {{carInfo.waiverAdminFee}}</td>
+                  <td>R {{carInfo.waiverPrice}}</td>
+                  </tr>
+              </table>
+              <br>
+              <b>Pay in person</b> -  All payments for car rental, unless included in a combo, are payable in person at the branch. Driver must be holder of a valid credit card. The deposit is based on payment by credit card only.
+                <br>
+              <b>Car documentation administration fee</b>  - Is a once-off payment (due at pick up) for inter alia storage fees. Legally, documents need to be retained for a set number of years.
+              <br> 
+              <br> 
+              <h4>Inclusions/Exclusions</h4>
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <th>the rate include</th>
+                <th>the rate exclude</th>
+              </thead>
+              <tr>
+                <td>{{carInfo.waiverIncludeDescription}}</td>
+                <td>{{carInfo.waiverExcludeDescription}}</td>
+              </tr>
+              </table>
+              <button class="btn btn-primary" style="float:left" (click)="back()">Back</button>
+              <button class="btn btn-success" (click)="next()">Continue</button>
+  </div>

@@ -1,0 +1,219 @@
+<div class="container">
+  <h2>Car- driver information</h2>
+  <!--div style="float:right" *ngFor="let car of this.carInfo">
+    <h3>Shopping cart</h3>
+    <hr>
+    <h4>Car summary</h4>
+    <hr>
+    <h5>supplier: {{car.supplierName}}</h5>
+    <h5>pick up: {{car.pickUpInfo.pickUpAddress1}},{{car.pickUpInfo.pickUpAddress2}} {{car.pickUpInfo.pickUpCity}},{{car.pickUpInfo.pickUpProvince}}</h5>
+    <h5>date: {{carHireInfo.pickUpDate}} {{carHireInfo.pickUpTime}}</h5>
+    <h5>tel: {{car.pickUpInfo.pickUpTel}}</h5>
+    <h5>drop off: {{car.dropOffInfo.dropOffAddress1}},{{car.dropOffInfo.dropOffAddress2}} {{car.dropOffInfo.dropOffCity}},{{car.dropOffInfo.dropOffProvince}}</h5>
+    <h5>car type: {{carHireInfo.dropOffDate}} {{carHireInfo.dropOffTime}}</h5>
+    <h5>Tel: {{car.dropOffInfo.dropOffTel}}</h5>
+    <h5> waiver price: {{car.waiverPrice}}</h5>
+    <h5> extra total: {{extraTotal}}</h5>
+    <h5> grand Total: {{grandTotal}}</h5>
+    </div-->
+    <br>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <th>Waiver Price </th>
+        <th>Extra Total </th>
+        <th>Grand Total (Excluding Deposit & Excess Fee)</th>
+      </thead>
+      <tbody>
+        <td>{{carInfo.waiverPrice}}</td>
+        <td>{{extraTotal}}</td>
+        <td>{{grandTotal}}</td>
+      </tbody>
+    </table>
+    <br>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+          <th>Pick-Up Location</th>
+          <th>Pick-Up Date</th>
+          <th>Pick-Up Time</th>
+          <th>Pick-Up Contact</th>
+          <th>Drop-Off Location</th>
+          <th>Drop-Off Date</th>
+          <th>Drop-Off Time</th>
+          <th>Drop-Off Contact</th>
+
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{carInfo.pickUpInfo.pickUpSuburb}}</td>
+          <td>{{carInfo.pickUpInfo.pickUpDate}}</td>
+          <td>{{carInfo.pickUpInfo.pickUpTime}}</td>
+          <td>
+            Tel: {{carInfo.pickUpInfo.pickUpTel}}<br>
+            Fax: {{carInfo.pickUpInfo.pickUpFax}}
+          </td>
+          <td>{{carInfo.dropOffInfo.dropOffSuburb}}</td>
+          <td>{{carInfo.dropOffInfo.dropOffDate}}</td>
+          <td>{{carInfo.dropOffInfo.dropOffTime}}</td>
+          <td>
+            Tel: {{carInfo.dropOffInfo.dropOffTel}}<br>
+            Fax: {{carInfo.dropOffInfo.dropOffFax}}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+      <br>
+  <table class="table table-striped">
+      <thead class="thead-dark">
+        <th>Vehicle Make and Model</th>
+        <th>Vehicle Details</th>
+        <th>Waiver Details</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{carInfo.vehicleMakeAndModel}}<br><img src="{{carInfo.carImage}}"></td>
+            <td>
+              <div class="row">
+                <div class="col-md-6">
+                    Vehicle category: <h5>{{carInfo.vehicleCategory}}</h5><br>
+                    Vehicle class size: <h5>{{carInfo.vehicleClassSize}}</h5><br>
+                    Transmission: <h5>{{carInfo.transmission}}</h5><br>
+                </div>
+                <div class="col-md-6">
+                    Air conditioning: <h5>{{carInfo.airConditioning}}</h5><br>
+                    Door count: <h5>{{carInfo.doorCount}}</h5><br>
+                    Passenger capacity: <h5>{{carInfo.passengerCapacity}}</h5><br>
+                </div>  
+              </div>
+            </td>
+            <td>
+                <!--div class="col-md-6"-->
+                  <h5>{{carInfo.waiverType}}</h5>
+                  Price: <h5>{{carInfo.waiverPrice}} ZAR</h5><br>
+                  <img id="waiver" src="{{carInfo.supplierLogo}}"><br>
+                  Deposit fee: <h5>{{carInfo.waiverDepositFee}} ZAR</h5><br>
+                  Excess fee<h5>{{carInfo.waiverExcessFee}} ZAR</h5><br>
+                <!--/div-->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+        <hr>
+        <h5>driver details</h5>
+        <hr>
+
+        <form (submit)="addDriverInfo(title,firstName,lastName,age,contactName,personIsTravelling,email,cellPhone,homePhone,workPhone,address1,address2,cityOrTown,postalCode,province,country,SAIdNo)">
+          <div class="row">
+            <div class="form-group col-md-2">
+              <label>Title:</label>
+              <select name="title" placeholder="Title" class="form-control" [(ngModel)]="title">
+                <option>Mr</option>
+                <option>Mrs</option>
+                <option>Miss</option>
+                <option>Ms</option>
+                <option>Dr</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label>First Name:</label>
+              <input type="text" placeholder="First Name" name="firstName" class="form-control" [(ngModel)]="firstName"/>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Last Name:</label>
+             <input type="text" placeholder="Last Name" name="lastName" class="form-control" [(ngModel)]="lastName"/>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="age"> age:(21+)*</label>
+              <select name="age" class="form-control" [(ngModel)]="age">
+                  <option>21</option>
+                  <option>22</option>
+                  <option>23</option>
+                  <option>24</option>
+                  <option>25</option>
+                  <option>26</option>
+                  <option>27</option>
+                  <option>28</option>
+                  <option>29</option>
+                  <option>30+</option>
+                </select>
+            </div>
+          </div>
+
+          <hr>
+          <h5>primary contact person</h5>
+          <hr>
+        <div class="row">
+          <div class="form-group col-md-6">
+              <label for="contactName"> contact name:*</label>
+              <input type="text" name="contactName" placeholder="Contact Name" class="form-control" [(ngModel)]="contactName"/>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="personIsTravelling">person is travelling:*</label>
+            <select name="personIsTravelling" class="form-control" [(ngModel)]="personIsTravelling">
+              <option>true</option>
+              <option>false</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text" placeholder="Email Address" name="email" class="form-control" [(ngModel)]="email"/>
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Cell Phone" name="cellPhone" [(ngModel)]="cellPhone"/>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+              <input type="text" class="form-control" placeholder="Home Phone" name="homePhone" [(ngModel)]="homePhone"/>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" placeholder="Work Phone" name="workPhone" [(ngModel)]="workPhone"/>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text" name="address1" placeholder="Address Line 1" class="form-control" [(ngModel)]="address1"/>
+          </div>
+          <div class="col-md-6">
+            <input type="text" name="address2" placeholder="Suburb" class="form-control" [(ngModel)]="address2"/>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text" name="cityOrTown" placeholder="City" class="form-control" [(ngModel)]="cityOrTown"/>
+          </div>
+          <div class="col-md-6">
+            <input type="text" name="postalCode" placeholder="Postal Code" class="form-control" [(ngModel)]="postalCode"/>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text" placeholder="Province" name="province" class="form-control" [(ngModel)]="province"/>
+          </div>
+          <div class="col-md-6">
+            <input type="text" name="country" placeholder="Country" class="form-control" [(ngModel)]="country"/>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text" name="SAIdNo" placeholder="SA ID Number" class="form-control" [(ngModel)]="SAIdNo"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <br>
+            <input type="button" class="btn btn-primary" (click)="back()" value="back"/>
+            <input style="float:right" type="submit" class="btn btn-success" value="Reserve"/>
+          </div>
+        </div>
+
+        </form>
+  </div>

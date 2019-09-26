@@ -1,0 +1,411 @@
+<body>
+  <div class="container">
+          <!--button style="float:right" class="btn btn-primary btn-lg" (click)="onSignOut()">Sign Out</button-->
+      <h2>Your kulula Account profile details</h2>
+      
+      <div id="exTab1" class="container">	
+          <!--div class="tab-content clearfix"-->
+                  <ul  class="nav nav-tabs">
+                          <li class="nav-item">
+                              <a  class="nav-link active"  data-toggle="pill" href="#pills-1a"><span class="fa fa-user fa-2x"></span><h6>Personal details</h6></a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link"  data-toggle="pill" href="#pills-2a"><span class="fa fa-lock fa-2x"></span><h6>Account settings</h6></a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link"  data-toggle="pill" href="#pills-3a"><span class="fa fa-credit-card fa-2x"></span><h6>Billing information</h6></a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link"  data-toggle="pill" href="#pills-4a"><span class="fa fa-plane fa-2x"></span><h6>Book Flight</h6></a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link"  data-toggle="pill" href="#pills-5a"><span class="fa fa-car fa-2x"></span><h6>Hire a car</h6></a>
+                          </li>
+                          <li class="nav-item">
+                              <a  class="nav-link"  data-toggle="pill" href="#pills-6a"><span class="fa fa-bed fa-2x"></span><h6>Book hotel</h6></a>
+                          </li>
+                          <li class="nav-item">
+                                  <a class="nav-link"  data-toggle="pill" href="#pills-7a"><span class="fa fa-credit-card fa-2x"></span><h6>Transaction History</h6></a>
+                              </li>
+                  </ul>
+  
+          <div class="tab-content">    
+              <div class="tab-pane fade show active container" id="pills-1a">
+                      <h4>Hi {{email1}}, thanks for creating a profile with kulula. </h4>
+                      
+                      <h5>Add your details</h5>
+                      <form (submit)="updateUser()">
+                          <div class="row">
+                              <div class="col-md-6">
+                                      <label>First Name (as per ID/Passport)*:</label>
+                                      <input type="text" name="firstName"  class="form-control"  [(ngModel)]="firstName" required>
+                              </div>
+                              <div class="col-md-6">
+                                      <label>Last Name (as per ID/Passport)*:</label>
+                                      <input type="text" name="lastName"  class="form-control" [(ngModel)]="lastName"  required>
+                              </div>
+                          </div>    
+                          <div class="row">
+                              <div class="col-md-6">
+                                      <label>Date of Birth -12years or older*:</label>
+                                      <input type="Date" name="dateOfBirth"  class="form-control" [(ngModel)]="dateOfBirth"  required>
+                              </div>
+                              <div class="col-md-6">
+                                      <label>Select your gender*:</label>
+                                      <select name="gender" class="form-control" [(ngModel)]="gender" required>
+                                          <option value="male">Male</option>
+                                          <option value="female">Female</option>
+                                      </select>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                      <label>Mobile 1*:</label>
+                                      <input type="text" name="mobile1" class="form-control" [(ngModel)]="mobile1" required>
+                              </div>
+                              <div class="col-md-6">
+                                      <label>Mobile 2:</label>
+                                      <input type="text" name="mobile2" class="form-control" [(ngModel)]="mobile2">
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                      <label>Email address:</label>
+                                      <input type="text" name="email1" class="form-control" [(ngModel)]="email1" ><br>
+                              </div>
+                              <div class="col-md-6">
+                                      <label>Email address 2:</label>
+                                      <input type="text" name="email2" class="form-control" [(ngModel)]="email2" ><br>
+                              </div>
+                          </div>
+                          <div class="row">
+                          <div class="col-md-12">
+                              <input class="btn btn-primary" type="submit" value="Save">
+                          </div>
+                      </div>
+                  </form>  
+              </div>
+              <div class="tab-pane fade container" id="pills-2a">
+                  <h4>View and Update account settings</h4>
+              <h5>Usename: {{email1}}</h5>
+              <form (submit)="updatePassword(oldPassword,newPassword)">
+                      <label>Old Password:</label>
+                      <input type="password" name="oldPassword"  class="form-control" placeholder="Old Password" [(ngModel)]="oldPassword" required><br>
+              
+                      <label>New Password:</label>
+                      <input type="password" [disabled]="oldPassword!==password" name="newPassword" class="form-control" placeholder="New Password" [(ngModel)]="newPassword" required><br>
+                      <div class="row">
+                          <div class="col-md-12">
+                                  <input class="btn btn-primary" type="submit" value="Update">
+                          </div>
+                      </div>
+  
+              </form>
+              </div>
+              <div class="tab-pane fade container" id="pills-3a">
+              <form (submit)="billingInfo(billingAddress1,billingSuburb,billingCountry,billingCity,billingPostalCode)">
+              <h3>Billing address</h3>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <label>Address 1:</label>
+                          <input type="text" name="billingAddress1"  class="form-control" placeholder="Billing Address 1" [(ngModel)]="billingAddress1" required>
+                      </div>
+                      <div class="col-md-6">
+                          <label>Address Suburb:</label>
+                          <input type="text" name="billingSuburb" class="form-control" placeholder="Billing Suburb" [(ngModel)]="billingSuburb" required>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <label>Country:</label>
+                          <input type="text" name="billingCountry" class="form-control" placeholder="Country" [(ngModel)]="billingCountry" required> 
+                      </div>   
+                      <div class="col-md-6">
+                          <label>City:</label>
+                          <input type="text" name="billingCity" class="form-control" placeholder="City" [(ngModel)]="billingCity" required> 
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <label>Postal/Zip code:</label>
+                          <input type="text" name="billingPostalCode" class="form-control" placeholder="Postal/Zip code" [(ngModel)]="billingPostalCode" required>     
+                      </div>    
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <input class="btn btn-primary" type="submit" value="Save">  
+                      </div>
+                  </div>
+                  </form>  
+              </div>
+              <div class="tab-pane fade container" id="pills-4a">
+                  <div class="row"> 
+                  <form class="col-md-12" (submit)="onSearch()">
+                      <h2>Search Flights</h2>
+                      <hr>
+                      <div class="row">
+                          <div class="form group col-md-4">
+                              <label for="departureLocation">From:</label>
+                              <select class="form-control" name="departureLocation" [(ngModel)]="departureLocation">
+                                  <option>O.R Tambo (Jo'burg)</option>
+                                  <option>Lanseria (Jo'burg)</option>
+                                  <option>King Shaka (Durban)</option>
+                                  <option>Cape Town</option>
+                                  <option>George</option>
+                                  <option>Port Elizabeth</option>
+                                  <option>East London</option>
+                                  <option>Windhoek</option>
+                                  <option>Harare</option>
+                                  <option>Maurituis</option>
+                                  <option>Victoria Falls</option>
+                                  <option>Livingstone</option>
+                                  <option>Nairobi</option>
+                                  </select>
+                            </div>
+                            <div class="form group col-md-4">
+                                <label for="arrivalLocation">To:</label>
+                                <select class="form-control" name="arrivalLocation" [(ngModel)]="arrivalLocation">
+                                    <option>O.R Tambo (Jo'burg)</option>
+                                    <option>Lanseria (Jo'burg)</option>
+                                    <option>King Shaka (Durban)</option>
+                                    <option>Cape Town</option>
+                                    <option>George</option>
+                                    <option>Port Elizabeth</option>
+                                    <option>East London</option>
+                                    <option>Windhoek</option>
+                                    <option>Harare</option>
+                                    <option>Maurituis</option>
+                                    <option>Victoria Falls</option>
+                                    <option>Livingstone</option>
+                                    <option>Nairobi</option>
+                                  </select>
+                              </div>
+                              <div class="form group col-md-4">
+                                <label for="className">Preferred Class:</label>
+                                <select class="form-control" name="className" [(ngModel)]="className">
+                                    <option>Economy</option>
+                                    <option>Business</option>
+                                    </select>
+                              </div>
+                            </div>
+                              <div class="row">
+                              <div class="form group col-md-4">
+                                  <label for="departureDate">Departure Date:</label>
+                                  <input type="date" min="{{today}}" name="departuredate" class="form-control"  [(ngModel)]="departureDate">
+                                </div>
+                              
+                                <div class="form group col-md-2">
+                                  <label for="traveller">No of travellers:</label>
+                                  <input type="number" class="form-control" min=1 max=8 name="traveller" [(ngModel)]="traveller"/>
+                                </div>
+                              </div>
+                            <div class="row">
+                            <div class="col-md-12">
+                              <hr>
+                              <input class="btn btn-primary" type="submit" value="Search">
+                          </div>
+                        </div>
+                      </form>
+                  </div>
+              </div>
+              <div class="tab-pane fade container" id="pills-5a">
+                  <div class="row">
+                      <form class="col-md-12" (submit)="onCarSearch(pickUpPoint,pickUpDate,pickUpTime,dropOffPoint,dropOffDate,dropOffTime)">
+                          <h2>Hire a Car</h2>
+                          <hr>   
+                          <div class="row"> 
+                              <div class="form group col-md-4">
+                                  <label for="pickUpPoint">Pick-up point</label>
+                                  <select class="form-control" type="text" placeholder="select a branch" name="pickUpPoint" [(ngModel)]="pickUpPoint">
+                                      <option>Centurion</option>
+                                      <option>Durban Downtown</option>
+                                      <option>Fourways</option>
+                                      <option>Hatfield</option> 
+                                      <option>Knysna</option>
+                                      <option>Margate</option>
+                                      <option>Plettenberg Bay</option>
+                                      <option>Pretoria CSIR</option>
+                                      <option>Randburg</option>
+                                      <option>Rondebosch</option>
+                                      <option>Rustenburg</option>
+                                      <option>Sandton Sun</option>
+                                      <option>Sandton Eye</option>
+                                      <option>Stellenbosch</option>
+                                      <option>Umhlanga</option>
+                                  </select>
+                              </div>
+                              <div class="form group col-md-4">
+                                  <label for="pickUpDate">Pick-up date:</label>
+                                  <input type="date" class="form-control" min="{{today}}" name="pickUpDate" [(ngModel)]="pickUpDate"/>
+                              </div>
+                                  
+                              <div class="form group col-md-4">
+                                  <label for="pickUpTime">Pick-up time:</label>
+                                  <input type="time" class="form-control" name="pickUpTime" [(ngModel)]="pickUpTime"/>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="form group col-md-4">
+                                  <label for="dropOffPoint">Drop-off point:</label>
+                                  <select type="text" class="form-control" name="dropOffPoint" [(ngModel)]="dropOffPoint">
+                                      <option>Centurion</option>
+                                      <option>Durban Downtown</option>
+                                      <option>Fourways</option>
+                                      <option>Hatfield</option> 
+                                      <option>Knysna</option>
+                                      <option>Margate</option>
+                                      <option>Plettenberg Bay</option>
+                                      <option>Pretoria CSIR</option>
+                                      <option>Randburg</option>
+                                      <option>Rondebosch</option>
+                                      <option>Rustenburg</option>
+                                      <option>Sandton Sun</option>
+                                      <option>Sandton Eye</option>
+                                      <option>Stellenbosch</option>
+                                      <option>Umhlanga</option>
+                                  </select>
+                              </div>
+                              <div class="form group col-md-4">
+                                  <label for="dropOffTime">Drop-off time:</label>
+                                  <input type="time" name="dropOffTime" class="form-control"  [(ngModel)]="dropOffTime">
+                               </div>
+                              <div class="form group col-md-4">
+                                  <label for="dropOffDate">Drop-off date:</label>
+                                  <input type="date" name="dropOffDate" min="{{today}}" class="form-control"  [(ngModel)]="dropOffDate">
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <hr>
+                                  <input class="btn btn-primary" type="submit" value="Search">
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+              <div class="tab-pane fade container" id="pills-6a">
+                  <div class="row">
+                      <form class="col-md-12"(submit)="onHotelSearch(hotelCity,hotelProvince,locationType,propertyType,checkInDate,checkOutDate,hotelName,hotelChain,starRating)">
+                          <h2>Book a hotel</h2>
+                          <hr>
+                          <div class="row">  
+                              <div class="form group col-md-4">
+                                  <label for="hotelCity">Hotel City:</label>
+                                  <input type="text" class="form-control" name="hotelCity" [(ngModel)]="hotelCity"/>
+                              </div>
+                              <!--div class="form group col-md-3">
+                                  <label for="hotelProvince">Hotel Province:</label>
+                                  <input type="text" class="form-control" name="hotelProvince" [(ngModel)]="hotelProvince"/>
+                              </div-->
+                              <div class="form group col-md-4">
+                                  <label for="checkInDate">Check in:</label>
+                                  <input type="Date" class="form-control" name="checkInDate" [(ngModel)]="checkInDate"/>
+                              </div>
+                              <div class="form group col-md-4">
+                                  <label for="className">Check out:</label>
+                                  <input type="Date" class="form-control" name="checkOutDate" [(ngModel)]="checkOutDate"/>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="form group col-md-3">
+                                  <label for="roomTotal">Number of Rooms:</label>
+                                  <input type="number" class="form-control" min=1 max=10 name="roomTotal" (change)="onChange($event)" [(ngModel)]="roomTotal"/>
+                              </div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                              <div class="form group col-md-2" *ngFor="let room of room;let i=index">    
+                                  <label for="roomQuantity">Room {{i+1}}</label>
+                                  <br>   
+                                  <label>No of travellers:</label>
+                                  <input type="number" class="form-control" min=1 max=6 name="travellerQuantity" (change)="onTraveller($event,i)" [(ngModel)]="travellerQuantity"/>  
+                              </div>
+                          </div>
+                              <hr>
+                          <div class="row">    
+                              <div class="form group col-md-4">  
+                                  <label for="hotelName">Hotel Name (optional):</label>
+                                  <input type="text" class="form-control" name="hotel_name" [(ngModel)]="hotelName"/>
+                              </div>
+                              <div class="form group col-md-4">
+                                  <label for="propertyType">Hotel property Type (optional):</label>
+                                  <select type="text" class="form-control" name="propertyType" [(ngModel)]="propertyType">                     
+                                      <option selected>Any</option>
+                                      <option>bed and breakfast></option>
+                                      <option>quest house limited service</option>
+                                      <option>hotel</option>
+                                      <option>lodge</option>
+                                      <option>resort</option>
+                                      <option>boutique</option>
+                                  </select>
+                              </div>
+                              <div class="form group col-md-4">
+                                  <label for="locationType">Hotel Location type (optional):</label>
+                                  <select type="text" class="form-control" name="locationType" [(ngModel)]="locationType">                     
+                                      <option selected>Any</option>
+                                      <option>airport</option>
+                                      <option>beach</option>
+                                      <option>city</option>
+                                      <option>wildlife reserve</option>
+                                      <option>resort</option>
+                                      <option>countryside</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="form group col-md-4">
+                                  <label for="starRating">Star rating (optional):</label>
+                                  <input type="number" class="form-control" min=0 max=5 name="starRating" [(ngModel)]="starRating"/>
+                              </div>   
+                              <div class="form group col-md-4">
+                                  <label for="hotelChain">Hotel Chain (optional):</label>
+                                  <select type="text" class="form-control" name="hotel_chain" [(ngModel)]="hotelChain">                     
+                                      <option selected>Any</option>
+                                      <option>City Lodge Group</option>
+                                      <option>Fairmont Hotels & Resorts</option>
+                                      <option>Legacy Hotels & Resorts</option>
+                                      <option>Orient Express</option>
+                                      <option>Protea</option>
+                                      <option>Relais Hotels</option>
+                                      <option>Tsogo Sun</option>
+                                      <option>Starwood Hotels</option>
+                                      <option>Sun International</option>
+                                      <option>Three Cities</option>
+                                      <option>& Beyond</option>
+                                      <option>Forever Resorts</option>
+                                      <option>Guvon Hotels</option>
+                                      <option>Independent</option>
+                                  </select>
+                              </div>   
+                          </div>
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <hr>
+                                  <input class="btn btn-primary" type="submit" value="Search">    
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div> 
+              <div class="tab-pane fade container" id="pills-7a">
+              <table class="table table-striped">
+                  <thead class="thead-dark">
+                      <th>Transaction Reference</th>
+                      <th>Transaction Date</th>
+                  </thead>
+                  <tr *ngFor="let transaction of transaction">
+                      <td>{{transaction.id}}</td>
+                      <td>{{transaction.transactionDate}}</td>
+                  </tr>
+              </table> 
+              </div>  
+          </div>
+      </div>
+  </div>
+  </body>
+            
+                              
+                            
+                         
+                   
+      

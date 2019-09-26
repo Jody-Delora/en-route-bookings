@@ -1,0 +1,176 @@
+
+  <br>
+  <h4>Seating List</h4>
+  <br>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <th></th>
+      <th>Seat Column</th>
+      <th>Seat Row</th>
+      <th>Seat Position</th>
+      <th>Seat Type</th>
+      <th>Seat Price</th>
+    
+      </thead>
+    <tr *ngFor="let seat of this.seatInfo;let i=index">
+      <td>{{i+1}}</td>
+      <td>{{seat.seatColumn}}</td>
+      <td>{{seat.seatRow}}</td>
+      <td>{{seat.seatPosition}}</td>
+      <td>{{seat.seatType}}</td>
+      <td>{{seat.seatPrice}}></td>
+      <th><button class="btn btn-danger" (click)="removeSeat(i)" >Remove Seat</button></th>
+    </tr>
+  </table>
+  <br>
+  <form class="seat_legend">
+    <h4>Seat Legend</h4>
+      <ol id="seatLegend">
+          <li id="standard">
+          </li>
+          <label for="standard">Standard(Back/Front)</label>
+  
+          <li id="stretch">
+          </li>
+          <label for="stretch">Stretch Zone (Extra Legroom)</label>
+   
+          <li id="exit">
+          </li>
+          <label for="exit">Exit Row (Extra Legroom)</label>
+
+          <li id="front">
+          </li>
+          <label for="front">Front Row (Extra Legroom)</label>
+        </ol>
+    </form>
+    <br>
+    <div class="plane">
+      <div class="exit exit--front fuselage">
+        
+      </div>
+      <ol class="cabin fuselage" >
+        <li class="row row--1">
+          <ol class="seats" *ngFor="let seat of this.seatInfo|slice:0:6" [ngSwitch]="seat.seatType">
+            <li class="seat" >
+              <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+            </li>
+          </ol>
+        </li>
+        <li  class="row row--2" >
+            <ol class="seats" *ngFor="let seat of this.seatInfo|slice:6:12" [ngSwitch]="seat.seatType">
+              <li class="seat" > 
+                <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>    
+              </li>
+            </ol>
+          </li>
+          <li  class="row row--3" >
+            <ol class="seats" *ngFor="let seat of this.seatInfo|slice:12:18" [ngSwitch]="seat.seatType">
+              <li class="seat" >
+                <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              </li>
+            </ol>
+          </li>
+          <li class="row row--4">
+            <ol class="seats" *ngFor="let seat of this.seatInfo|slice:18:24" [ngSwitch]="seat.seatType">
+              <li class="seat" >
+                <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen"  for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Standard (Back)'"  style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              </li>
+            </ol>
+          </li>
+          <li class="row row--5" >
+            <ol class="seats" *ngFor="let seat of this.seatInfo|slice:24:30" [ngSwitch]="seat.seatType">
+              <li class="seat" >
+                <label   *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen"  for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label   *ngSwitchCase="'Standard (Back)'"  style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}" >{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label   *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label   *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label   *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+              </li>
+            </ol>
+          </li>
+          <li  class="row row--6" >
+            <ol class="seats" *ngFor="let seat of this.seatInfo|slice:30:36" [ngSwitch]="seat.seatType">
+              <li class="seat" >
+                <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+               
+              </li>
+            </ol>
+          </li>  
+          <li class="row row--7" >
+            <ol class="seats" *ngFor="let seat of this.seatInfo|slice:36:42" [ngSwitch]="seat.seatType">
+              <li class="seat" >
+                <input  type="checkbox"  [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)" />
+                <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+               
+              </li>
+            </ol>
+          </li>
+          <li class="row row--8">
+            <ol class="seats" *ngFor="let seat of this.seatInfo|slice:42:48" [ngSwitch]="seat.seatType">
+              <li class="seat" >
+                <input  type="checkbox"  [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)" />
+                <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+               
+              </li>
+            </ol>
+          </li>
+          <li class="row row--9">
+            <ol class="seats" *ngFor="let seat of this.seatInfo|slice:48:54" [ngSwitch]="seat.seatType">
+              <li class="seat" >
+                <input  type="checkbox"  [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)" />
+                <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+               
+              </li>
+            </ol>
+          </li>
+          <li class="row row--10">
+            <ol class="seats" *ngFor="let seat of this.seatInfo|slice:54:60" [ngSwitch]="seat.seatType">
+              <li class="seat" >
+                <input  type="checkbox"  [disabled]="seat.seatOccupied==true" id="{{seat.seatColumn}}{{seat.seatRow}}" (click)="selectSeat(seat.id,seat.seatRow,seat.seatColumn,seat.seatType,seat.seatPosition,seat.seatPrice)" />
+                <label *ngSwitchCase="'Standard (Front)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Standard (Back)'" style="background:lightseagreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Stretch Zone (Extra Legroom)'" style="background:plum" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Exit Row (Extra Legroom)'" style="background:lightgreen" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>
+                <label *ngSwitchCase="'Front Row (Extra Legroom)'" style="background:burlywood" for="{{seat.seatColumn}}{{seat.seatRow}}">{{seat.seatColumn}}{{seat.seatRow}}</label>        
+              </li>
+            </ol>
+          </li>
+      </ol>
+      <div class="exit exit--back fuselage"> 
+             
+      </div>  
+     
+    </div>
+

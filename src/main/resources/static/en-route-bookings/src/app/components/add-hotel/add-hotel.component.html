@@ -1,0 +1,153 @@
+<div class="row">
+  <div class="col-md-12">
+      <br>
+      <button class="btn btn-primary" (click)="back()">Back</button>
+      <br>
+  </div>
+</div>
+
+<h4>Add hotel</h4>
+<form (submit)="addHotel()">
+  <div class="row">
+      <div class="col-md-4">
+          <label>Hotel Address 1:</label>
+          <input type="text" name="hotelAddress1" class="form-control" [(ngModel)]="hotelAddress1"/>
+      </div>
+      <div class="col-md-4">
+          <label>Hotel Suburb:</label>
+          <input type="text" name="hotelSuburb" class="form-control" [(ngModel)]="hotelSuburb"/>
+      </div>
+      <div class="col-md-4">
+          <label>Hotel City:</label>
+          <input type="text" name="hotelCity" class="form-control" [(ngModel)]="hotelCity"/>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4">
+          <label>Hotel Province:</label>
+          <select name="hotelProvince" class="form-control" [(ngModel)]="hotelProvince">
+              <option>Gauteng</option>
+              <option>North West</option>
+              <option>Limpopo</option>
+              <option>Mpumalanga</option>
+              <option>Eastern Cape</option>
+              <option>Free State</option>
+              <option>Northern Cape</option>
+              <option>Western Cape</option>
+              <option>KwaZuluNatal</option>
+          </select>
+      </div>
+      <div class="col-md-4">
+          <label>Hotel Country:</label>
+          <select name="hotelCountry" class="form-control" [(ngModel)]="hotelCountry">
+              <option>South Africa</option>
+          </select>   
+      </div>
+      <div class="col-md-4">
+          <label>Hotel Name:</label>
+          <input type="text" name="hotelName" class="form-control" [(ngModel)]="hotelName"/>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4">
+          <label>Hotel Description:</label>
+          <textarea name="hotelDescription" class="form-control" [(ngModel)]="hotelDescription"></textarea>
+      </div>
+      <div class="col-md-4">
+          <label>Hotel Chain:</label>
+          <select name="hotelChain" class="form-control" [(ngModel)]="hotelChain">
+              <option>City Lodge Group</option>
+              <option>Fairmont Hotels & Resorts</option>
+              <option>Legacy Hotels & Resorts</option>
+              <option>Orient Express</option>
+              <option>Protea</option>
+              <option>Relais Hotels</option>
+              <option>Tsogo Sun</option>
+              <option>Starwood Hotels</option>
+              <option>Sun International</option>
+              <option>Three Cities</option>
+              <option>& Beyond</option>
+              <option>Forever Resorts</option>
+              <option>Guvon Hotels</option>
+              <option>Independent</option>
+          </select>
+      </div>
+       <div class="col-md-4">
+          <label>Hotel Image:</label>
+          <input type="file" name="hotelImage" class="form-control" (change)="getHotelImages($event)" multiple/>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4">
+          <label>Location Type:</label>
+          <select name="locationType" class="form-control" [(ngModel)]="locationType">
+              <option>Airport</option>
+              <option>Beach</option>
+              <option>City</option>
+              <option>WildLife Reserve</option>
+              <option>Resort</option>
+              <option>Countryside</option>
+          </select>
+      </div>
+      <div class="col-md-4">
+              <label>Property Type:</label>
+              <select name="propertyType" class="form-control" [(ngModel)]="propertyType">
+                  <option>Bed and breakfast</option>
+                  <option>Guest house limited service</option>
+                  <option>Hotel</option>
+                  <option>lodge</option>
+                  <option>Resort</option>
+                  <option>Boutique</option>
+              </select>
+          </div>
+      <div class="col-md-4">
+          <label>Property Amenities:</label>
+          <textarea name="propertyAmenities" class="form-control" [(ngModel)]="propertyAmenities"></textarea>    
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4">
+          <label>Star Rating:</label>
+          <input type="number" name="starRating" class="form-control" [(ngModel)]="starRating"/>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <br>
+          <input  type="submit" class="btn btn-primary" value="Add Hotel"/>
+          <!--[disabled]="roomList.length==0"-->
+      </div> 
+  </div>
+</form>
+
+<form (submit)="addRoom(roomType,roomDescription,roomAmenity,roomPrice)">
+  <h4>Add Room</h4>
+  <div class="row">
+      <div class="col-md-4">
+          <label>Room Type:</label>
+          <input type="text" name="roomType" class="form-control" [(ngModel)]="roomType"/>
+      </div>
+      <div class="col-md-4">
+          <label>Room Description:</label>
+          <textarea name="roomDescription" class="form-control" [(ngModel)]="roomDescription"></textarea>
+      </div>
+      <div class="col-md-4">
+          <label>Room Amenity:</label>
+          <textarea name="roomAmenity" class="form-control" [(ngModel)]="roomAmenity"></textarea>
+      </div>
+  </div>
+  <div class="row"> 
+      <div class="col-md-4">
+          <label>Room Price:</label>
+          <input type="text" name="roomPrice" class="form-control" [(ngModel)]="roomPrice"/>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <br>
+          <input type="submit" class="btn btn-primary" Value="Add Room"/>
+          <br>
+      </div>
+  </div>
+</form>
+<app-room-list [roomInfo]="this.roomList"></app-room-list> 

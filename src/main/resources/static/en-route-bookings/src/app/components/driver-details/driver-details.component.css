@@ -1,0 +1,22 @@
+img{
+    width:230px;
+    height:150px;
+}
+hr{
+    background-color: darkslategrey;
+}
+#waiver{
+    width:100px;
+    height:40px;
+}
+form label{
+    font-size:14px;
+}
+input[type="text"],input[type="submit"]{
+    font-size:14px;
+}
+select{
+    font-size:14px;
+    min-height:33px;
+    min-width: 25px;
+}

@@ -1,0 +1,118 @@
+
+<!--div class="stepwizard col-md-offset-0">
+    <div class="stepwizard-row setup-panel">
+      <div class="stepwizard-step">
+        <a  type="button" class="btn btn-primary btn-circle" disabled="disabled">1</a>
+        <p>Flight Selection</p>
+      </div>
+      <div class="stepwizard-step">
+        <a  type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+        <p>Review</p>
+      </div>
+      <div class="stepwizard-step">
+        <a  type="button" class="btn btn-default btn-circle" >3</a>
+        <p>Traveller Details</p>
+      </div>
+      <div class="stepwizard-step">
+          <a  type="button" class="btn btn-default btn-circle" >4</a>
+          <p>Seat Selection </p>
+        </div>
+        <div class="stepwizard-step">
+            <a  class="btn btn-default btn-circle" disabled="disabled">5</a>
+            <p>Flight Extras</p>
+          </div>
+          <div class="stepwizard-step">
+              <a  type="button" class="btn btn-default btn-circle" disabled="disabled">6</a>
+              <p>Payment</p>
+            </div>
+            <div class="stepwizard-step">
+                <a  type="button" class="btn btn-default btn-circle" disabled="disabled">7</a>
+                <p>Done</p>
+              </div>
+    </div>
+  </div-->
+  <body>
+    <div class="container">
+      <h3>Who's flying?</h3>
+      <br>
+      <app-traveller-confirmation [travellerInfo]="this.travellerList"></app-traveller-confirmation>
+      <br>
+      <h5>Please enter your details below</h5>
+      <br>
+      <form (submit)="addTraveller(firstName,lastName,dateOfBirth,gender,mobile1,mobile2,email1,email2)">
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-keyboard-o fa-2x"></i></span>
+                        </div>
+                  <input type="text" placeholder="First Name *" name="firstName" class="form-control" [(ngModel)]="firstName" required><br>
+                </div>
+                </div>
+              <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa fa-keyboard-o fa-2x"></i></span>
+                          </div>
+                    <input type="text" placeholder="Last Name *" name="lastName"  class="form-control" [(ngModel)]="lastName" required><br>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="date_of_birth">Date of birth -12 years or older*</label>
+              <input type="Date" name="dateOfBirth" class="form-control"  max="{{today}}" [(ngModel)]="dateOfBirth">
+            </div>
+            <div class="col-md-6">
+                <label for="gender">Gender *</label>
+                <select name="gender" class="form-control" [(ngModel)]="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-mobile fa-2x"></i></span>
+                      </div>
+                  <input type="text" placeholder="Mobile *" name="mobile1" placeholder="Mobile 1" class="form-control" [(ngModel)]="mobile1" required><br>
+              </div>
+            </div>
+              <div class="col-md-6">
+                  <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-mobile fa-2x"></i></span>
+                        </div>
+                    <input type="text" placeholder="Mobile 2 (Optional)" name="mobile2" class="form-control" [(ngModel)]="mobile2"><br>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-envelope fa-2x"></i></span>
+                            </div>
+                      <input type="text" placeholder="Email *" name="email1" class="form-control" [(ngModel)]="email1" required><br>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-envelope fa-2x"></i></span>
+                            </div>
+                      <input type="text" placeholder="Email 2 (Optional)" name="email2" class="form-control" [(ngModel)]="email2"><br>
+                    </div>
+                  </div>
+                </div>    
+          <div class="row">
+            <div class="col-md-12">
+              <input [disabled]="travellerList.length==traveller" type="submit" value="Submit" class="btn btn-primary"/><br>
+            </div>
+          </div>
+        </form>
+    </div>
+    </body>
+    

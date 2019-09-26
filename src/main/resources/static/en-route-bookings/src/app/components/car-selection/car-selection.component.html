@@ -1,0 +1,67 @@
+<div class="container">
+  <br>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+          <th>Pick-Up Location</th>
+          <th>Pick-Up Date</th>
+          <th>Pick-Up Time</th>
+          <th>Drop-Off Location</th>
+          <th>Drop-Off Date</th>
+          <th>Drop-Off Time</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{carHireInfo.pickUpLocation}}</td>
+          <td>{{carHireInfo.pickUpDate}}</td>
+          <td>{{carHireInfo.pickUpTime}}</td>
+          <td>{{carHireInfo.dropOffLocation}}</td>
+          <td>{{carHireInfo.dropOffDate}}</td>
+          <td>{{carHireInfo.dropOffTime}}</td>
+        </tr>
+      </tbody>
+    </table>
+      <br>
+      <h4>Which Vehicle best suits you?</h4>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <th>Vehicle Make and Model</th>
+    <th>Vehicle Details</th>
+    <th>Waiver Details</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let car of car">
+        <td>{{car.vehicleMakeAndModel}}<br><img src="{{car.carImage}}"></td>
+        <td>
+          <div class="row">
+            <div class="col-md-6">
+                Vehicle category: <h5>{{car.vehicleCategory}}</h5><br>
+                Vehicle class size: <h5>{{car.vehicleClassSize}}</h5><br>
+                Transmission: <h5>{{car.transmission}}</h5><br>
+            </div> 
+            <div class="col-md-6"> 
+                Air conditioning: <h5>{{car.airConditioning}}</h5><br>
+                Door count: <h5>{{car.doorCount}}</h5><br>
+                Passenger capacity: <h5>{{car.passengerCapacity}}</h5>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="row">
+            <div class="col-md-6" *ngFor="let waiver of car.carWaiverDetails">
+              <h5>{{waiver.waiverType}}</h5>
+              <input type='checkbox' (click)="selectWaiver(car.vehicleMakeAndModel,car.carImage,car.vehicleCategory,car.vehicleClassSize,car.transmission,car.airConditioning,car.doorCount,car.passengerCapacity,car.carExtra,waiver.waiverType,waiver.waiverDescription,waiver.waiverExcludeDescription,waiver.waiverIncludeDescription,waiver.waiverAdminFee,waiver.waiverDepositFee,waiver.waiverExcessFee,waiver.waiverPrice,car.carSupplier.carSupplierLogo,car.carSupplier.carSupplierName,car.carSupplier.branch)"/>
+              Price: <h5>{{waiver.waiverPrice}} ZAR</h5><br>
+              <img id="waiver" src="{{car.carSupplier.carSupplierLogo}}"><br>
+              Deposit Fee: <h5>{{waiver.waiverDepositFee}} ZAR</h5><br>
+              Excess Fee: <h5>{{waiver.waiverExcessFee}} ZAR</h5><br>
+            </div>
+          </div>
+        </td>           
+      </tr>
+    </tbody>
+  </table>
+  
+  <!--div class="col-md-12">
+  <button class="btn btn-primary" (next)="next()">Continue</button>
+  </div-->
+</div>

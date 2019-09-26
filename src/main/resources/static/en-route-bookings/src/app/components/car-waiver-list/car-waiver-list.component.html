@@ -1,0 +1,26 @@
+<h4>Waiver List</h4>
+  <br>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <th>Waiver Type</th>
+      <th>Waiver Description</th>
+      <th>Waiver Excluded Description</th>
+      <th>Waiver Included Description</th>
+      <th>Waiver Admin Fee</th>
+      <th>Waiver Deposit Fee</th>
+      <th>Waiver Excess Fee</th>
+      <th>Waiver Price</th>
+      </thead>
+    <tr *ngFor="let waiver of this.waiverInfo;let i=index">
+      <td>{{i+1}}</td>
+      <td>{{waiver.waiverType}}</td>
+      <td>{{waiver.waiverDescription}}</td>
+      <td>{{waiver.waiverExcludeDescription}}</td>
+      <td>{{waiver.waiverExcludeDescription}}</td>
+      <td>{{waiver.waiverAdminFee}}</td>
+      <td>{{waiver.waiverDepositFee}}</td>
+      <td>{{waiver.waiverExcessFee}}</td>
+      <td>{{waiver.waiverPrice}}</td>
+    </tr>
+  </table>
+  <br>

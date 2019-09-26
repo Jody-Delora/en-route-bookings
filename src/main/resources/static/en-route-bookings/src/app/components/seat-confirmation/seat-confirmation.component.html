@@ -1,0 +1,20 @@
+<div class="container">
+  <table class="table table-striped">
+      <thead *ngIf="this.seatInfo.length!=0">
+          <th></th>
+          <th>Seat ID</th>
+          <th>Seat Type</th>
+          <th>Seat Position</th>
+          <th>Seat Price</th>
+      </thead>
+      <tr *ngFor="let seat of this.seatInfo;let i=index">
+      <td>{{i+1}}</td>
+      <td>{{seat.seatColumn}}{{seat.seatRow}}</td>
+      <td>{{seat.seatType}}</td>
+      <td>{{seat.seatPosition}}</td>
+      <td>R {{seat.seatPrice}}</td>
+      <th><button class="btn btn-danger" (click)="deSelect(i)" >Deselect Seat</button></th>
+      </tr>
+      </table>
+      <button [disabled]="seatInfo.length!=traveller" style="float:right" class="btn btn-success" (click)="next()">Continue To Flight Extras</button>
+  </div>

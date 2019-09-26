@@ -1,0 +1,23 @@
+<br>
+  <br>
+  <h4>Flight Extras List</h4>
+  <br>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <th></th>
+      <th>Extra Type</th>
+      <th>Extra Description</th>
+      <th>Extra Price</th>
+      <th>Extra Image</th>
+      </thead>
+    <tr *ngFor="let extra of this.flightExtraInfo;let i=index">
+      <td>{{i+1}}</td>
+      <td>{{extra.extraType}}</td>
+      <td>{{extra.extraDescription}}</td>
+      <td>{{extra.extraPrice}}</td>
+      <td>{{extra.extraImage}}</td>
+      
+    </tr>
+  </table>
+  <br>
+

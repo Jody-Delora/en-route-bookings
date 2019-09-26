@@ -1,0 +1,19 @@
+<br>
+<h4>Room List</h4>
+<br>
+<table class="table table-striped">
+    <thead class="thead-dark">
+      <th></th>
+      <th>Room Type</th>
+      <th>Room Description</th>
+      <th>Room Amenity</th>
+      <th>Room Price</th>
+      </thead>
+    <tr *ngFor="let room of this.roomInfo;let i=index">
+      <td>{{i+1}}</td>
+      <td>{{room.roomType}}</td>
+      <td>{{room.roomDescription}}</td>
+      <td>{{room.roomAmenity}}</td>      
+      <td>{{room.roomPrice}}</td> 
+    </tr>
+  </table>

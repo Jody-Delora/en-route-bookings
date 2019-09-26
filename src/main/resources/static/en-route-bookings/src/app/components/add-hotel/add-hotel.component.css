@@ -1,0 +1,20 @@
+textarea{
+    font-size:16px;
+    min-height: 95px;
+}
+input[type=text]{
+    font-size:16px;
+}
+button{
+    float:right;
+}
+input[type=submit]{
+    float:right;
+}
+select{
+    min-height:33px;
+    font-size:16px;
+}
+label{
+    font-size:16px;
+}

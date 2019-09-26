@@ -1,0 +1,206 @@
+<div class="row">
+  <div class="col-md-12">
+    <br>
+    <button class="btn btn-primary" (click)="back()">Back</button>
+    <br>
+  </div>
+</div>
+
+<form class="col-md-12" (submit)="addCar()">
+  <h4>Add Car</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Car Image</label>
+      <input type="file" name="carImage" class="form-control" (change)="getCarImage($event)">
+    </div>
+    <div class="col-md-4">
+      <label>Transmission</label>
+      <select type="text" class="form-control" name="transmission" class="form-control" [(ngModel)]="transmission">
+        <option>Manual</option>
+        <option>Automatic</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Airconditioning</label>
+      <select type="text" class="form-control" name="airConditioning" class="form-control" [(ngModel)]="airConditioning">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+   </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Door Count:</label>
+      <input type="number" min=0 name="doorCount" class="form-control" max=6 [(ngModel)]="doorCount"/>
+    </div>
+    <div class="col-md-4">
+      <label>Vehicle Category:</label>
+      <select type="text" class="form-control" name="vehicleCategory" class="form-control" [(ngModel)]="vehicleCategory">
+        <option>Car</option>
+        <option>Station wagon</option>
+        <option>Pickup</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Vehicle Class Size</label>
+      <select type="text" class="form-control" name="vehicleClassSize" class="form-control" [(ngModel)]="vehicleClassSize">
+        <option>Mini</option>
+        <option>Compact</option>
+        <option>Standard</option>
+        <option>Intermediate</option>
+        <option>Economy</option>
+        <option>Full size</option>
+      </select>
+    </div> 
+    <div class="col-md-4">
+      <label>Vehicle Make And Model</label>
+      <input type="text" name="vehicleMakeAndModel" class="form-control" [(ngModel)]="vehicleMakeAndModel"/>
+    </div>
+    <div class="col-md-4">
+      <label>Passenger Capacity</label>
+      <input type="number" min=0 name="passengerCapacity" class="form-control" max=8 [(ngModel)]="passengerCapacity"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Supplier Name:</label>
+      <input type="text" name="supplierName" class="form-control" [(ngModel)]="carSupplierName"/>
+    </div>
+    <div class="col-md-4">
+      <label>Supplier Logo:</label>
+      <input type="file" name="supplierLogo" class="form-control" (change)="getSupplierLogo($event)"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <br>
+      <input [disabled]="waiverList.length!=2" type="submit" class="btn btn-primary" value="Add Car"/>
+      <br>
+    </div>
+  </div>
+</form>
+
+<form class="col-md-12" (submit)="addWaiver()">
+  <h2>Add Waiver</h2>
+  <br>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Waiver Admin Fee:</label>
+      <input type="text" name="waiverAdminFee" class="form-control" [(ngModel)]="waiverAdminFee"/>
+    </div>
+    <div class="col-md-4">
+      <label>Waiver Deposit Fee:</label>
+      <input type="text" name="waiverDepositFee" class="form-control" [(ngModel)]="waiverDepositFee"/>
+    </div>
+    <div class="col-md-4">
+      <label>Waiver Excess Fee</label>
+      <input type="text" name="waiverExcessFee" class="form-control" [(ngModel)]="waiverExcessFee"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Waiver Description</label>
+      <textarea name="waiverDescription" class="form-control" [(ngModel)]="waiverDescription"></textarea>
+    </div>
+    <div class="col-md-4">
+      <label>Waiver Exclude Description:</label>
+      <textarea name="waiverExcludeDescription" class="form-control" [(ngModel)]="waiverExcludeDescription"></textarea>
+    </div>
+    <div class="col-md-4">
+      <label>Waiver Include Description:</label>
+      <textarea name="waiverIncludeDescription" class="form-control" [(ngModel)]="waiverIncludeDescription"></textarea>
+    </div> 
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Waiver Type:</label>
+      <select name="waiverType" class="form-control" [(ngModel)]="waiverType">
+        <option>Standard Waiver</option>
+        <option>Super Waiver</option>
+      </select>
+   </div>
+    <div class="col-md-4">
+      <label>Waiver Price:</label>
+      <input type="text" name="waiverPrice" class="form-control" [(ngModel)]="waiverPrice"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <br>
+      <input [disabled]="waiverList.length==2" type="submit" class="btn btn-primary" value="Add Waiver"/>
+      <br>
+    </div>
+  </div>
+</form>
+
+<form (submit)="addBranch()">
+  <div class="row">
+    <div class="col-md-4">
+      <label>Branch Address 1:</label>
+      <input type="text" name="branchAddress1" class="form-control" [(ngModel)]="branchAddress1"/>
+    </div>
+    <div class="col-md-4">
+      <label>Branch Suburb:</label>
+      <input type="text" name="branchSuburb" class="form-control" [(ngModel)]="branchSuburb"/>
+    </div>
+    <div class="col-md-4">
+      <label>Branch City:</label>
+      <input type="text" name="branchCity" class="form-control" [(ngModel)]="branchCity"/>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4">
+        <label>Branch Province:</label>
+        <input type="text" name="branchProvince" class="form-control" [(ngModel)]="branchProvince"/>
+      </div>
+      <div class="col-md-4">
+        <label>Branch Tel:</label>
+        <input type="text" name="branchTel" class="form-control" [(ngModel)]="branchTel"/>
+      </div>
+      <div class="col-md-4">
+        <label>Branch Fax:</label>
+        <input type="text" name="branchFax" class="form-control" [(ngModel)]="branchFax"/>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+        <br>
+        <input type="submit" class="btn btn-primary" value="Add Branch"/>
+        <br>
+    </div>
+  </div>
+</form>
+
+<form class="col-md-12" (submit)="addCarExtra(carExtraType,carExtraPrice)">
+  <h2>Add Car Extra</h2>
+  <br>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Car Extra Type:</label>
+      <select type="text" class="form-control" name="carExtraType" class="form-control" [(ngModel)]="carExtraType">
+        <option>Additional driver surcharge</option>
+        <option>Tyre & windscreen cover</option>
+        <option>Navigation unit</option>
+        <option>Minor damage waiver</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Car Extra Price:</label>
+      <input type="text" name="carExtraType" class="form-control" [(ngModel)]="carExtraPrice"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <br>
+      <input type="submit" class="btn btn-primary" value="Add Car Extra"/>
+      <br>
+    </div>
+  </div>
+</form>
+
+<app-car-waiver-list [waiverInfo]="this.waiverList"></app-car-waiver-list>
+<app-branch-list [branchInfo]="this.branchList"></app-branch-list>
+<app-car-extra-list [carExtraInfo]="this.carExtraList"></app-car-extra-list>
+

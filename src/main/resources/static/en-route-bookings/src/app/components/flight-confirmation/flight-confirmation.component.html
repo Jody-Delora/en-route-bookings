@@ -1,0 +1,141 @@
+<!--div class="stepwizard col-md-offset-0">
+    <div class="stepwizard-row setup-panel">
+      <div class="stepwizard-step">
+        <a  type="button" class="btn btn-primary btn-circle" disabled="disabled">1</a>
+        <p>Flight Selection</p>
+      </div>
+      <div class="stepwizard-step">
+        <a  type="button" class="btn btn-default btn-circle" >2</a>
+        <p>Review</p>
+      </div>
+      <div class="stepwizard-step">
+        <a  type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+        <p>Traveller Details</p>
+      </div>
+      <div class="stepwizard-step">
+          <a  type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+          <p>Seat Selection </p>
+        </div>
+        <div class="stepwizard-step">
+            <a  class="btn btn-default btn-circle" disabled="disabled">5</a>
+            <p>Flight Extras</p>
+          </div>
+          <div class="stepwizard-step">
+              <a  type="button" class="btn btn-default btn-circle" disabled="disabled">6</a>
+              <p>Payment</p>
+            </div>
+            <div class="stepwizard-step">
+                <a  type="button" class="btn btn-default btn-circle" disabled="disabled">7</a>
+                <p>Done</p>
+              </div>
+    </div>
+  </div-->
+  <body>
+    <div class="container">
+      <br>
+      <button class="btn btn-success" data-toggle="modal" data-target="#cart"><span class="fa fa-shopping-cart"></span> R {{flightInfo.farePrice*traveller}}</button>
+      <br>
+    <!-- Modal -->
+    <!--div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Cart Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <table class="table" >
+                    <th><h3>Cart Details</h3></th>
+               
+                <thead>
+                  <th><h3>Total Cost</h3></th>
+                    <th><h3>R {{flightInfo.farePrice*traveller}}</h3></th>
+              </thead>
+              <th><h4>Fares</h4></th>
+              <th><h5>R {{flightInfo.farePrice}}</h5></th>
+                <tr>
+                  <td><h5>Travellers</h5></td>
+                  <td><h5>{{traveller}}</h5></td>
+                </tr>
+            
+                
+                <th><h4>Taxes and Fees (included in fares)</h4></th>
+                <th><h5>R {{flightInfo.VAT+flightInfo.passengerSafetyCharge+flightInfo.passengerSecurityCharge+flightInfo.passengerServiceCharge}}</h5></th>
+                <tr>
+                  <td><h5>Value Added Tax</h5></td>
+                  <td><h5>R {{flightInfo.VAT}}</h5></td>
+                 </tr> 
+                <tr> 
+                  <td><h5>Passenger Safety Charge</h5></td>
+                  <td><h5>R {{flightInfo.passengerSafetyCharge}}</h5></td>
+                </tr>
+                <tr>
+                  <td><h5>Passenger Security Charge</h5></td>
+                  <td><h5>R {{flightInfo.passengerSecurityCharge}}</h5></td>
+                </tr>
+                <tr>
+                  <td><h5>Passenger Service Charge</h5></td>
+                  <td><h5>R {{flightInfo.passengerServiceCharge}}</h5></td>
+                </tr>
+               
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div-->
+    
+    <br>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <th>Date</th>
+        <th>Departure/Arrival</th>
+        <th>Class</th>
+        <th>Price</th>
+        </thead>
+      <tbody>
+        <tr>
+          <td>Date:<h5>{{flightInfo.departureDate}}</h5></td>
+          <td>Departure Time:<h5>{{flightInfo.departureTime}}</h5>From <h5>{{flightInfo.departureLocation}}</h5><br>Arrival Time<h5>{{flightInfo.arrivalTime}}</h5>To: <h5>{{flightInfo.arrivalLocation}}</h5></td>
+          <td><h5>{{flightInfo.fareType}}</h5><br><img src="{{flightInfo.carrierLogo}}"/><br>{{flightInfo.flightNo}}<br>{{flightInfo.aircraftName}}</td>
+          <td><h5>R {{flightInfo.farePrice}} per person</h5><br>
+            <button class="btn btn-primary" (click)="onChange()">Change</button>
+          </td>
+        </tr>
+    
+      </tbody>
+    </table>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+        <th>Fare Price</th>
+        <th>Traveller Quantity</th>
+        <th>VAT</th>
+        <th>Passenger Safety Charge</th>
+        <th>Passenger Security Charge</th>
+        <th>Passenger Service Charge</th>
+        <th>Total Taxes</th>
+        <th>Total Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>R {{flightInfo.farePrice}}</td>
+        <td>{{traveller}}</td>
+        <td>R {{flightInfo.VAT}}</td>
+        <td>R {{flightInfo.passengerSafetyCharge}}</td>
+        <td>R {{flightInfo.passengerSecurityCharge}}</td>
+        <td>R {{flightInfo.passengerServiceCharge}}</td>
+        <td>R {{flightInfo.VAT+flightInfo.passengerSafetyCharge+flightInfo.passengerSecurityCharge+flightInfo.passengerServiceCharge}}</td>
+        <td><b>R {{flightInfo.farePrice*traveller}}</b></td>
+      </tr>
+    </tbody>
+    </table>
+    <button class="btn btn-success" (click)="travellerPage()">Continue To Travellers</button>
+    </div>
+    </body>

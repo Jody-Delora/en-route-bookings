@@ -1,0 +1,17 @@
+<br>
+<h4>Car Extra List</h4>
+<br>
+<table class="table table-striped">
+    <thead class="thead-dark">
+      <th></th>
+      <th>Car Extra Type</th>
+      <th>Car Extra Price</th>
+      
+      </thead>
+    <tr *ngFor="let carExtra of this.carExtraInfo;let i=index">
+      <td>{{i+1}}</td>
+      <td>{{carExtra.carExtraType}}</td>
+      <td>{{carExtra.carExtraPrice}}</td>
+      
+    </tr>
+  </table>

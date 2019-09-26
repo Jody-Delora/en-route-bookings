@@ -1,0 +1,24 @@
+#searchLegend{
+    float:right;
+}
+form label{
+    font-size:18px;
+}
+hr{
+    background-color:black;
+}
+td{
+    font-size:18px;
+}
+img{
+    width:140px;
+    height:200px;
+}
+input[type="text"],input[type="submit"]{
+    font-size:18px;
+}
+select{
+    font-size:18px;
+    min-height:33px;
+    min-width: 25px;
+}

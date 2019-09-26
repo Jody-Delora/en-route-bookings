@@ -1,0 +1,33 @@
+<br>
+  <br>
+  <h4>Flight Fare List</h4>
+  <br>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <th></th>
+      <th>Fare Type</th>
+      <th>Checked Baggage</th>
+      <th>Fare Cancellation</th>
+      <th>Flight Changes</th>
+      <th>Food And Beverages</th>
+      <th>Value Added Tax</th>
+      <th>Passenger Safety Charge</th>
+      <th>Passenger Security Charge</th>
+      <th>Passenger Service Charge</th>
+      <th>Fare Price</th>
+      </thead>
+    <tr *ngFor="let fare of this.fareInfo;let i=index">
+      <td>{{i+1}}</td>
+      <td>{{fare.fareType}}</td>
+      <td>{{fare.checkedBaggage}}</td>
+      <td>{{fare.flightCancellation}}</td>
+      <td>{{fare.flightChanges}}</td>
+      <td>{{fare.foodAndBeverages}}</td>
+      <td>{{fare.VAT}}</td>
+      <td>{{fare.passengerSafetyCharge}}</td>
+      <td>{{fare.passengerSecurityCharge}}</td>
+      <td>{{fare.passengerServiceCharge}}</td>
+      <td>{{fare.farePrice}}></td>
+    </tr>
+  </table>
+  <br>

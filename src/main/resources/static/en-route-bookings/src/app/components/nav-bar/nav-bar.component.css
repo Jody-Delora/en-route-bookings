@@ -1,0 +1,37 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #9ACD32;
+}
+.navbar{
+    background-color: #9ACD32;
+}
+.navbar-brand{
+    font-size: 28px;
+}
+.nav-link{
+    font-size:24px;
+}
+
+li {
+    float: right;
+    font-size:24px;
+}
+
+
+li a,li form {
+    display: block;
+    color: white;
+    /*text-align: center;*/
+    font-size: 14px;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+span{
+   color:white; 
+}
+li a:hover:not(.active) {
+    background-color:#333 ;
+}

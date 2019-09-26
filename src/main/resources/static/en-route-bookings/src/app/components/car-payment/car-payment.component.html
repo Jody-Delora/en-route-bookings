@@ -1,0 +1,81 @@
+<h4>Your  reservation was successful.</h4>
+<h5>Please check your email for your booking reference.</h5>
+<!--html>
+  <h2>booking confirmation</h2>
+  <h5>ypur booking has been confirmed.please quote the reference (below) for any queries regarding this booking</h5>
+  <br>
+  <h3>booking reference number : </h3>
+  <br>
+  <h3>car - 530394793</h3> 
+  <br>
+  <table class="table table-striped">
+      <thead>
+        <th><h4>Vehicle Make and Model</h4></th>
+        <th><h4>Vehicle Details</h4></th>
+        <th><h4>Waiver Details</h4></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let carInfo of carInfo">
+            <td><h4>{{carInfo.vehicleMakeAndModel}}</h4><br><img src="{{carInfo.carImage}}"></td>
+            <td>
+              <h4>Vehicle category: {{carInfo.vehicleCategory}}</h4><br>
+              <h4>Vehicle class size: {{carInfo.vehicleClassSize}}</h4><br>
+              <h4>Transmission: {{carInfo.transmission}}</h4><br>
+              <h4>Air conditioning: {{carInfo.airConditioning}}</h4><br>
+              <h4>Door count: {{carInfo.doorCount}}</h4><br>
+              <h4>Passenger capacity: {{carInfo.passengerCapacity}}</h4><br>
+            </td>
+            <td >
+              <div class="col-md-6">
+                <h4>{{carInfo.waiverType}}</h4>
+                <h4>{{carInfo.waiverPrice}} ZAR</h4><br>
+                <img id="waiver" src="{{carInfo.supplierLogo}}"><br>
+                <h5>deposit {{carInfo.waiverDepositFee}} ZAR</h5><br>
+                <h5>excess {{carInfo.waiverExcessFee}} ZAR</h5><br>
+                </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table" *ngFor="let carInfo of carInfo">
+          <thead>
+            <th><h4>waiver Deposit Fee</h4></th>
+            <th><h4>waiver Excess Fee</h4></th>
+            <th><h4>waiver Admin Fee</h4></th>
+            <th><h4>waiver Total Price</h4></th>
+            </thead>
+            <tr>
+              <td><h5>R {{carInfo.waiverDepositFee}}</h5></td>
+              <td><h5>R {{carInfo.waiverExcessFee}}</h5></td>
+              <th><h5>R {{carInfo.waiverAdminFee}}</h5><th>
+              <th><h4>R {{carInfo.waiverPrice}}</h4></th>
+              </tr>
+          </table>
+          <br>
+          <h4>Pay in person -  All payments for car rental, unless included in a combo, are payable in person at the branch. Driver must be holder of a valid credit card. The deposit is based on payment by credit card only.</h4>
+            <br>
+          <h4>Car documentation administration fee  - Is a once-off payment (due at pick up) for inter alia storage fees. Legally, documents need to be retained for a set number of years.</h4>
+          <br>  
+          <h2>Inclusions/Exclusions</h2>
+          <br>
+        <table class="table table-striped" *ngFor="let carInfo of carInfo">
+          <thead>
+            <th><h4>the rate include</h4></th>
+            <th><h4>the rate exclude</h4></th>
+          </thead>
+          <tr>
+            <td><h5>{{carInfo.waiverIncludeDescription}}</h5></td>
+            <td><h5>{{carInfo.waiverExcludeDescription}}</h5></td>
+          </tr>
+          </table>
+          <h3>Your Registered contact details</h3>
+          <h5>Name: </h5><br>
+          <h5>Address 1: </h5><br>
+          <h5>Address 2: </h5><br>
+          <h5>City/Town: </h5><br>
+          <h5>Country: </h5><br>
+          <h5>Province: </h5><br>
+          <h5>Postal Code: </h5><br>
+          <h5>Cell phone number:</h5><br>
+          <h5>Email: </h5><br>
+  </html-->

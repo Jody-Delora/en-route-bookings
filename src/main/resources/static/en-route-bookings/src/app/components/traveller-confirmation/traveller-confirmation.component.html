@@ -1,0 +1,31 @@
+<div class="container">
+  <!--h2>Who will be travelling?</h2-->
+    <table class="table table-striped">
+      <thead class="thead-dark" *ngIf="this.travellerInfo.length!=0">
+        <th></th>
+        <th>Full Name</th>
+        <th>Date of birth</th>
+        <th>Gender</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th></th>
+      </thead>
+    <tr *ngFor="let traveller of this.travellerInfo;let i=index">
+    <td>{{i+1}}</td>
+    <td>{{traveller.firstName}} {{traveller.lastName}}</td>
+    <td>{{traveller.dateOfBirth}}</td>
+    <td>{{traveller.gender}}</td>
+    <td>{{traveller.mobile1}}<br>{{traveller.mobile2}}<br></td>
+    <td>{{traveller.email1}}<br>{{traveller.email2}}</td>
+    <td><!--button class="btn btn-primary btn btn-lg" data-toggle="collapse" data-target="#demo">Update Details</button-->
+      <button class="btn btn-danger" (click)="removeTraveller(i)" >Remove </button>
+    </td>
+    
+    </tr>
+    </table>
+   
+  <button [disabled]="travellerInfo.length!=traveller" class="btn btn-success" style="float:right"  (click)="next()">Continue To Seat Selection</button>
+  </div>
+  
+  
+  

@@ -1,0 +1,170 @@
+
+<div class="container">
+  <h3>Almost done! Time for payment.</h3>
+  <br>
+  <h4>Where are you going?</h4>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <th>Date</th>
+        <th>Departure/Arrival</th>
+        <th>Class</th>
+        <th>Price</th>
+      </thead>
+      <tbody>
+        <tr >
+          <td>Date:<h5>{{flightInfo.departureDate}}</h5></td>
+          <td><h5>{{flightInfo.departureTime}}</h5> Depart <h5>{{flightInfo.departureLocation}}</h5><br><h5>{{flightInfo.arrivalTime}}</h5>Arrive <h5>{{flightInfo.arrivalLocation}}</h5></td>
+          <td><h5>{{flightInfo.fareType}}</h5><br><img src="{{flightInfo.carrierLogo}}"/><br><h5>{{flightInfo.flightNo}}</h5><br><h5>{{flightInfo.aircraftName}}</h5></td>              
+          <td><h5>R {{flightInfo.farePrice}} per person</h5><br>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+  
+        <h4>Who will be travelling?</h4>
+  
+      <table class="table table-striped">
+        <thead class="thead-dark" *ngIf="this.travellerInfo.length!=0">
+          <th></th>
+          <th>Full Name</th>
+          <th>Date of birth</th>
+          <th>Gender</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th></th>
+        </thead>
+        <tr *ngFor="let traveller of this.travellerInfo;let i=index">
+          <td>{{i+1}}</td>
+          <td>{{traveller.firstName}} {{traveller.lastName}}</td>
+          <td>{{traveller.dateOfBirth}}</td>
+          <td>{{traveller.gender}}</td>
+          <td>{{traveller.mobile1}}</td>
+          <td>{{traveller.email1}}</td>
+        </tr>
+      </table>
+  
+    <h4>Where will you be sitting?</h4>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <th>Seat Quantity</th>
+          <th>Seat Position</th>
+          <th>Seat Type</th>
+          <th>Seat Situated</th>
+          <th>Seat Price</th>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let seat of seatInfo;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{seat.seatColumn}}{{seat.seatRow}}</td>
+            <td>{{seat.seatType}}</td>
+            <td>{{seat.seatPosition}}</td>
+            <td>R {{seat.seatPrice}}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <h4>Any flight Extras?</h4>
+  
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <th></th>
+          <th>Extra Type</th>
+          <th>Extra Description</th>
+          <th>Extra Price</th>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let extra of flightExtras;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{extra.extraType}}</td>
+            <td>{{extra.extraDescription}}</td>
+            <td>{{extra.extraPrice}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <table class="table table-bordered">
+          <thead class="thead-dark">
+            <th>Fare Total</th>
+            <th>Seat Total</th>
+            <th *ngIf="this.flightExtras!=0">ExtraTotal</th>
+            <th>Grand Total</th>
+          </thead>
+          <tbody>
+            <td>R {{fareTotal}}</td>
+            <td>{{seatTotal}}</td>
+            <td *ngIf="this.flightExtras!=0">{{this.extraTotal}}</td>
+            <td>{{this.grandTotal}}</td>
+          </tbody>
+        </table>
+  
+  <h5>Credit/ Cheque <img src="../../../assets/images/credit_debit_icon.png" width="320px" height="100px"></h5>
+  <!--div id="dropin-container"></div-->
+  <form (submit)="bookFlight(cardNumber,cardName,expirationDate,cvv,email,billingAddress1,billingSuburb,billingCity,billingCountry,billingPostalCode)">
+    <hr>
+    <h5>Card Information</h5> 
+    <hr> 
+    <div class="row"> 
+      <div class="col-md-6">
+        <label >Card Number</label>
+        <input type="text" name="cardNumber" placeholder="Card Number" class="form-control" [(ngModel)]="cardNumber"/>
+        <!--div class="form-control" id="card-number" [(ngModel)]="cardNumber"></div-->
+      </div>
+      <div class="col-md-6">
+        <label>Card Holder Name:</label>
+        <input type="text" name="cardName" placeholder="Card Holder Name" class="form-control" [(ngModel)]="cardName"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label >Expiration Date</label>
+        <input type="date" min={{today}} name="expirationDate" class="form-control" [(ngModel)]="expirationDate"/>
+        <!--div class="form-control" id="expiration-date" [(ngModel)]="expirationDate"></div-->
+      </div>
+      <div class="col-md-6">
+        <label >CVV</label>
+        <input type="text" name="cvv" placeholder="CVV" class="form-control" [(ngModel)]="cvv"/>
+        <!--div class="form-control" id="cvv" [(ngModel)]="cvv" ></div-->
+      </div>
+    </div>
+    <hr>
+    <h5>Billing Information</h5>
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+        <label>Email Address: </label>
+        <input type="text" name="email" class="form-control" [(ngModel)]="email"/>
+      </div>
+      <div class="col-md-6">
+        <label>Address 1:</label>
+        <input type="text" name="billingAddress1"  class="form-control" placeholder=" Billing Address 1"  [(ngModel)]="billingAddress1" required/><br>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label>Billing Suburb:</label>
+        <input type="text" name="billingSuburb" class="form-control" placeholder="Billing Suburb" [(ngModel)]="billingSuburb" required/><br>
+      </div>
+      <div class="col-md-6">
+        <label>City</label>
+        <input type="text" name="billingCity" class="form-control" placeholder="Billing City" [(ngModel)]="billingCity" required/><br> 
+       </div>
+    </div>  
+    <div class="row">  
+      <div class="col-md-6">   
+        <label>Country</label>
+        <input type="text" name="bilingCountry" class="form-control" placeholder="Billing Country" [(ngModel)]="billingCountry" required/><br> 
+      </div>
+      <div class="col-md-6">
+        <label>Postal/Zip code</label>
+        <input type="text" name="billingPostalCode" class="form-control" placeholder="Postal/Zip code" [(ngModel)]="billingPostalCode" required><br> 
+      </div>
+    </div>  
+    <div class="row">  
+      <div class="col-md-12">
+        <input id="submit-button" style="float:right" class="btn btn-success" type="submit" value="Pay For Booking"/>    
+      </div>
+    </div>
+    </form>
+  <button class="btn btn-primary" (click)="back()">Back</button>
+  
+  </div>

@@ -1,0 +1,189 @@
+<!--div class="stepwizard col-md-offset-0">
+    <div class="stepwizard-row setup-panel">
+      <div class="stepwizard-step">
+        <a  type="button" class="btn btn-primary btn-circle">1</a>
+        <p>Flight Selection</p>
+      </div>
+      <div class="stepwizard-step">
+        <a  type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+        <p>Review</p>
+      </div>
+      <div class="stepwizard-step">
+        <a  type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+        <p>Traveller Details</p>
+      </div>
+      <div class="stepwizard-step">
+          <a  type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+          <p>Seat Selection </p>
+        </div>
+        <div class="stepwizard-step">
+            <a  class="btn btn-default btn-circle" disabled="disabled">5</a>
+            <p>Flight Extras</p>
+          </div>
+          <div class="stepwizard-step">
+              <a  type="button" class="btn btn-default btn-circle" disabled="disabled">6</a>
+              <p>Payment</p>
+            </div>
+            <div class="stepwizard-step">
+                <a  type="button" class="btn btn-default btn-circle" disabled="disabled">7</a>
+                <p>Done</p>
+              </div>
+    </div>
+  </div-->
+  <body>
+    <div class="container">
+        <br>
+        <button class="btn btn-success" style="float:right"><span class="fa fa-shopping-cart"></span> R 0.00</button>
+        <br>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+              <th>Departure</th>
+              <th>Carrier</th>
+              <th>Economy</th>
+              <th>Business</th>
+            </thead>
+            <tbody *ngFor="let aircraft of data">
+            <tr *ngFor="let flight of aircraft.flightSchedule">
+              <td>
+                <div class="row">
+                  <div class="col-md-4">
+                    Departure Date: <h5>{{flight.departureDate}}</h5>
+                  </div>
+                  <div class="col-md-4">
+                    Departure Time: <h5>{{flight.departureTime}}</h5>
+                  </div>
+                  <div class="col-md-4">
+                    From: <h5>{{flight.departureLocation}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    Arrival Date: <h5>{{flight.arrivalDate}}</h5>
+                  </div>
+                  <div class="col-md-4">
+                    Arrival Time: <h5>{{flight.arrivalTime}}</h5>
+                  </div>
+                  <div class="col-md-4">
+                    To: <h5>{{flight.arrivalLocation}}</h5>
+                  </div>
+                </div>
+              </td>
+              <td><img src="{{aircraft.carrierLogo}}"/><br>
+                Flight No: <h5>{{flight.flightNo}}</h5><br>
+                Aircraft: <h5>{{aircraft.aircraftName}}</h5>
+              </td>
+               <td>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                      View
+                    </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Select Per Person Fare</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-striped">
+                                  <thead class="thead-dark">
+                                    <th>Fare Type</th>
+                                    <th>Baggage</th>
+                                    <th>Cancellations(Pre-Flight)</th>
+                                    <th>Food & Beverages</th>
+                                    <th>Flight Changes</th>
+                                    <th>Price</th>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let fares of flight.airlineClass.fare">
+                                      <td>{{fares.fareType}}</td>
+                                      <td>{{fares.checkedBaggage}}</td>
+                                      <td>{{fares.flightCancellation}}</td>
+                                      <td>{{fares.foodAndBeverages}}</td>
+                                      <td>{{fares.flightChanges}}</td>
+                                      <td><button class="btn btn-success btn-md" (click)="selectedFare(flight.id,flight.departureDate,flight.departureTime,flight.departureLocation,flight.arrivalDate,flight.arrivalTime,flight.arrivalLocation,flight.flightNo,aircraft.aircraftName,aircraft.carrierName,aircraft.carrierLogo,flight.airlineClass.className,fares.fareType,fares.farePrice,fares.passengerSafetyCharge,fares.passengerSecurityCharge,fares.passengerServiceCharge,fares.vat)">R {{fares.farePrice}} </button></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              
+                              <!--div class="row">
+                              <div class="col-md-4" *ngFor="let fares of airlineClass.fare"><img src="{{fares.fareLogo}}"/><br>
+                                Baggage:{{fares.checkedBaggage}}<br>
+                                Cancellations(Pre-Flight):{{fares.flightCancellation}}<br>
+                                Food,Beverages:{{fares.foodAndBeverages}}<br>
+                                Flight Changes:{{fares.flightChanges}}<br>
+                                 Price:<button class="btn btn-success btn-md" (click)="selectedFare(flight.id,flight.departureDate,flight.departureTime,flight.departureLocation,flight.arrivalDate,flight.arrivalTime,flight.arrivalLocation,flight.flightNo,aircraft.aircraftName,aircraft.carrierName,aircraft.carrierLogo,airlineClass.className,fares.fareType,fares.farePrice,fares.passengerSafetyCharge,fares.passengerSecurityCharge,fares.passengerServiceCharge,fares.vat)">R {{fares.farePrice}} </button> 
+                              </div-->
+                               
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  <!--div class="row">
+                    <div class="col-md-4" *ngFor="let fares of airlineClass.fare"><img src="{{fares.fareLogo}}"/><br>
+                        Baggage:{{fares.checkedBaggage}}<br>
+                        Cancellations(Pre-Flight):{{fares.flightCancellation}}<br>
+                        Food,Beverages:{{fares.foodAndBeverages}}<br>
+                        Flight Changes:{{fares.flightChanges}}<br>
+                        Price:<button class="btn btn-success btn-md" (click)="selectedFare(flight.id,flight.departureDate,flight.departureTime,flight.departureLocation,flight.arrivalDate,flight.arrivalTime,flight.arrivalLocation,flight.flightNo,aircraft.aircraftName,aircraft.carrierName,aircraft.carrierLogo,airlineClass.className,fares.fareType,fares.farePrice,fares.passengerSafetyCharge,fares.passengerSecurityCharge,fares.passengerServiceCharge,fares.vat)">R {{fares.farePrice}} </button> 
+                    </div>
+                  </div-->  
+                  <!--button class="btn btn-primary btn-md"><h5 >FROM</h5> <br> R {{aircraft.flight.airlineClass.fare[0].fare_price}}</button-->
+            </td>
+            <td >
+                <div *ngIf="flight.airlineClass.className==Business">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+                      View
+                    </button>
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel1">Select Per Person Fare</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-striped">
+                                  <thead class="thead-dark">
+                                    <th>Fare Type</th>
+                                    <th>Baggage</th>
+                                    <th>Cancellations(Pre-Flight)</th>
+                                    <th>Food & Beverages</th>
+                                    <th>Flight Changes</th>
+                                    <th>Price</th>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let fares of flight.airlineClass.fare">
+                                      <td>{{fares.fareType}}</td>
+                                      <td>{{fares.checkedBaggage}}</td>
+                                      <td>{{fares.flightCancellation}}</td>
+                                      <td>{{fares.foodAndBeverages}}</td>
+                                      <td>{{fares.flightChanges}}</td>
+                                      <td><button class="btn btn-success btn-md" (click)="selectedFare(flight.id,flight.departureDate,flight.departureTime,flight.departureLocation,flight.arrivalDate,flight.arrivalTime,flight.arrivalLocation,flight.flightNo,aircraft.aircraftName,aircraft.carrierName,aircraft.carrierLogo,flight.airlineClass.className,fares.fareType,fares.farePrice,fares.passengerSafetyCharge,fares.passengerSecurityCharge,fares.passengerServiceCharge,fares.vat)">R {{fares.farePrice}} </button></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+              </td>  
+            </tr> 
+            </tbody>
+        </table>
+      </div>
+            <button class="btn btn-primary" style="float:left" (click)="onBack()">Back To Search</button>
+    </body>
+    
+              
+    

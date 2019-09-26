@@ -1,0 +1,30 @@
+<br>
+  <br>
+  <h4>Flight List</h4>
+  <br>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <th></th>
+      <th>Departure Location</th>
+      <th>Departure Date</th>
+      <th>Departure Time</th>
+      <th>Arrival Location</th>
+      <th>Arrival Date</th>
+      <th>Arrival Time</th>
+      <th>Flight No.</th>
+
+      </thead>
+    <tr *ngFor="let flight of this.flightInfo;let i=index">
+      <td>{{i+1}}</td>
+      <td>{{flight.departureLocation}}</td>
+      <td>{{flight.departureDate}}</td>
+      <td>{{flight.departureTime}}</td>
+      <td>{{flight.arrivalLocation}}</td>
+      <td>{{flight.arrivalDate}}</td>
+      <td>{{flight.arrivalTime}}</td>
+      <td>{{flight.flightNo}}</td>
+
+    </tr>
+  </table>
+  <br>
+
